@@ -1,7 +1,9 @@
 # game-object-creation
 -------------------
 
-Insert some cool description here about why the hell you are doing this.
+This example is about getting something on the screen. Basic workflow on how to setup pools and create your game objects. Even though it is the first real example it is the thickest because almost everything is new. 
+
+Most of this stuff will be repeated over and over again in the next examples.
 
 A [GAME-BUILDER][game-builder] project
 
