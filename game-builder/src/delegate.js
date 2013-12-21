@@ -1,6 +1,4 @@
-define(function(require) {
-	Utils = require("util");
-
+define(["util", "class"], function(util) {
 	var removeAllNulls = function(list) {
 		for (var i = list.length - 1; i >= 0; i--) {
 			var callbackObject = list[i];
@@ -87,7 +85,7 @@ define(function(require) {
 		},
 
 		destroy: function() {
-			Utils.destroyObject(this);
+			util.destroyObject(this);
 		},
 
 		execute: function(name, args) {

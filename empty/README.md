@@ -1,8 +1,8 @@
 # empty
 -------------------
 
-Insert some cool description here about why the hell you are doing this.
+The empty example meant to show what a bare bones project looks like.
 
-A [GAME-BUILDER][game-builder] project
+[GAME-BUILDER][game-builder] project
 
 [game-builder]: http://diegomarquez.github.io/game-builder

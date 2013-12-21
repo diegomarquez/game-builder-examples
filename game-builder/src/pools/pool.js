@@ -1,6 +1,4 @@
-define(function(require) {
-	var util = require("util");
-
+define(["util", "class"], function(util) {
 	var Pool = Class.extend({
 		init: function() {
 			this.pools = {};
