@@ -13,12 +13,12 @@ define(function(require){
 	});
 
 	// This is called when the canvas looses focus
-	game.on("pause", this, function() {
+	game.on("blur", this, function() {
 		console.log("fixed-state-machine is now paused");
 	});
 
 	// This is called when the canvas regains focus
-	game.on("resume", this, function() {
+	game.on("focus", this, function() {
 		console.log("fixed-state-machine resumes action");
 	});
 

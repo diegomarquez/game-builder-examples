@@ -5,20 +5,32 @@ define(function(require){
 	
 	var game = gb.game;
 	var root = gb.root;
+	var assembler = gb.assembler;
+	var layers = gb.layers;
 
+	game.add_extension(require("pause"));
+	game.add_extension(require("resume"));
+	game.add_extension(require("basic_layer_setup"));
 	
 	// This is the main initialization function
 	game.on("init", this, function() {
 		console.log("Welcome to Game-Builder!");
+
+		require('basic_bundle').create();
+
+		var go = assembler.get('Base_1');
+		layers.get('Middle').add(go);
+
+		go.start();
 	});
 
 	// This is called when the canvas looses focus
-	game.on("pause", this, function() {
+	game.on("blur", this, function() {
 		console.log("game-object-creation is now paused");
 	});
 
 	// This is called when the canvas regains focus
-	game.on("resume", this, function() {
+	game.on("focus", this, function() {
 		console.log("game-object-creation resumes action");
 	});
 
