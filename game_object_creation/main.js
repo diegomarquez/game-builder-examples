@@ -11,8 +11,10 @@ define(function(require){
 	var layers = gb.layers;
 	var canvas = gb.canvas;
 
-	game.add_extension(require('pause'));
-	game.add_extension(require('resume'));
+	//This piece of code takes care of creating a basic layer structure.
+	//it adds 4 layers to work with, 'Back', 'Middle', 'Front' and 'Text'.
+	//Each layer is on top of the previous one.
+	//If your project needs more layers, you can replace this extension with one of your own.
 	game.add_extension(require('basic_layer_setup'));
 	
 	var basic_game_object = require('basic_game_object'); 
@@ -59,12 +61,12 @@ define(function(require){
 
 	// This is called when the canvas looses focus
 	game.on('blur', this, function() {
-		console.log('game-object-creation is now paused');
+		console.log('game-object-creation has lost focus');
 	});
 
 	// This is called when the canvas regains focus
 	game.on('focus', this, function() {
-		console.log('game-object-creation resumes action');
+		console.log('game-object-creation has regained focus');
 	});
 
 	// This is the main update loop
