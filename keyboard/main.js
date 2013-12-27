@@ -14,12 +14,12 @@ define(function(require){
 
 	// This is called when the canvas looses focus
 	game.on("blur", this, function() {
-		console.log("keyboard is now paused");
+		console.log("keyboard has lost focus");
 	});
 
 	// This is called when the canvas regains focus
 	game.on("focus", this, function() {
-		console.log("keyboard resumes action");
+		console.log("keyboard has regained focus");
 	});
 
 	// This is the main update loop

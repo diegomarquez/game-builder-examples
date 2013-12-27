@@ -14,12 +14,12 @@ define(function(require){
 
 	// This is called when the canvas looses focus
 	game.on("blur", this, function() {
-		console.log("fixed-state-machine is now paused");
+		console.log("fixed-state-machine has lost focus");
 	});
 
 	// This is called when the canvas regains focus
 	game.on("focus", this, function() {
-		console.log("fixed-state-machine resumes action");
+		console.log("fixed-state-machine has regained focus");
 	});
 
 	// This is the main update loop

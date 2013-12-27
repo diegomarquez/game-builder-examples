@@ -14,12 +14,12 @@ define(function(require){
 
 	// This is called when the canvas looses focus
 	game.on("blur", this, function() {
-		console.log("timers is now paused");
+		console.log("timers has lost focus");
 	});
 
 	// This is called when the canvas regains focus
 	game.on("focus", this, function() {
-		console.log("timers resumes action");
+		console.log("timers has regained focus");
 	});
 
 	// This is the main update loop

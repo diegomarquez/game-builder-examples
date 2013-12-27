@@ -18,12 +18,12 @@ define(function(require){
 
 	// This is called when the canvas looses focus
 	game.on("blur", this, function() {
-		console.log("extensions is now paused");
+		console.log("extensions has lost focus");
 	});
 
 	// This is called when the canvas regains focus
 	game.on("focus", this, function() {
-		console.log("extensions resumes action");
+		console.log("extensions has regained focus");
 	});
 
 	// This is the main update loop
