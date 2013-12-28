@@ -1,7 +1,7 @@
 # renderers
 -------------------
 
-Insert some cool description here about why the hell you are doing this.
+Up until now the renderers used in the examples been some boring squares. Let's see how to draw some images.
 
 A [GAME-BUILDER][game-builder] project
 
