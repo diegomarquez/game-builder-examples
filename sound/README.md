@@ -1,7 +1,7 @@
 # sound
 -------------------
 
-Insert some cool description here about why the hell you are doing this.
+This example is about the sound_player module. It plays sound. That's it, move along.
 
 A [GAME-BUILDER][game-builder] project
 
