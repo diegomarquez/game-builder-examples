@@ -14,6 +14,12 @@ define(function(require){
 	// This is the main initialization function
 	game.on("init", this, function() {
 		console.log("Welcome to Game-Builder!");
+
+		require('layering_bundle').create();
+
+		gb.addToLayer('Front', 'Base_3');
+		gb.addToLayer('Middle', 'Base_2');
+		gb.addToLayer('Back', 'Base_1');
 	});
 
 	// This is called when the canvas looses focus
