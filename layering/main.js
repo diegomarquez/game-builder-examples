@@ -7,6 +7,8 @@ define(function(require){
 	var root = gb.root;
 	var layers = gb.layers;
 
+	var keyboard = require('keyboard');
+
 	game.add_extension(require('basic_layer_setup'));
 
 	// This is the main initialization function
@@ -19,9 +21,6 @@ define(function(require){
 		gb.addToLayer('Front', 'Base_3');
 		gb.addToLayer('Middle', 'Base_2');
 		gb.addToLayer('Back', 'Base_1');
-
-		//What follows are some examples of what you can do with the gjs.layers object
-		var keyboard = require('keyboard');
 
 		//These are used to add back the stuff to the layers if you
 		//remove them while trying out the example.
