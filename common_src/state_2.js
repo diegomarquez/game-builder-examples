@@ -1,5 +1,5 @@
 define(function(require) {
-	var state_machine_factory = require("state_machine_factory");
+	var state_machine_factory = require("state_machine");
 	var keyboard = require('keyboard');
 
 	//Notice how a function is returned when defining a state.
@@ -9,8 +9,6 @@ define(function(require) {
 	//If I just returned the value of state_machine_factory.createState, the module would
 	//always return the same state, instead of acting like a factory.
 
-	//It is possible that you might want to add the same type of state, but not the same instance
-	//to different state machines, this is how you do it.
 	return function(name) {
 		var state = state_machine_factory.createState(this, name);
 
