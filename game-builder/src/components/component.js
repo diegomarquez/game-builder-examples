@@ -30,13 +30,13 @@ define(["delegate"], function(Delegate) {
 			this.parent = null;
 		},
 
-		added: function() {},
+		added: function(parent) {},
 		
-		removed: function() {},
+		removed: function(parent) {},
 
 		start: function() {},
 		
-		update: function() {},
+		update: function(delta) {},
 
 		destroy: function() {
 			this.execute('recycle', this);

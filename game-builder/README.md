@@ -13,13 +13,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 ###### Current TODO List:
 
 - Examples v3
-    - Create generator templates
-        - Game Object
-        - Game Object Container
-        - Extension
-        - State
-        - Renderer
-        - Logic Component
     - Delete old example code
 
 - Anotate code to generate documentation
