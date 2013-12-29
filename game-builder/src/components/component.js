@@ -20,11 +20,19 @@ define(["delegate"], function(Delegate) {
 
 		onAdded: function(parent) {
 			this.parent = parent;
+			this.execute('added', this);
+			this.added(parent);
 		},
 
 		onRemoved: function() {
+			this.removed(parent);
+			this.execute('removed', this);
 			this.parent = null;
 		},
+
+		added: function() {},
+		
+		removed: function() {},
 
 		start: function() {},
 		
