@@ -3,8 +3,8 @@
   
   "version": "0.1.0",
   
-  "additionalSrcPaths": "../../common_src",
-  "additionalAssetPaths": "../../common_assets", 
+  "additionalSrcPaths": "../common_src",
+  "additionalAssetPaths": "../common_assets", 
   "additionalLibPaths": "",
 
   "frameworkLocation": "../../",
