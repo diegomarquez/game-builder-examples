@@ -10,18 +10,16 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 -----------------------------------
 
-###### Current TODO List:
-
-- Examples v3
-    - Delete old example code
+###### TODO List:
 
 - Anotate code to generate documentation
     - examples
     - src
+
+- Delete old example code
      
 - Redo the gh-pages branch build system to accomodate for the new structure
     - Rethink the page layout of the website
-    - Move into own repository
 
 - Tag Game-Builder, again.
 
