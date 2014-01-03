@@ -3,15 +3,15 @@
  * ### By [Diego Enrique Marquez](http://treintipollo.com/)
  */
 
-// Dependencies: _util_, _class_
+// Dependencies: **_util_**, **_class_**
 
 // An implementation of a [Multicast Delegate](http://en.wikipedia.org/wiki/Delegation_pattern). 
 // Sounds like a mouthful? The more friendly name is, 'Event system', which sounds about a million times less cool.
 
 // Basically this class is a hash, with each key of the hash being an array of functions. 
 
-// Add funtions using the .on() method, always providing an id and scope with the function.
-// At some point in the future call the method .execute() with a given id, all the funtions registered under the id provided will be executed.
+// Add funtions using the **.on()** method, always providing an id and scope with the function.
+// At some point in the future call the method **.execute()** with a given id, all the funtions registered under the id provided will be executed.
 // Simple, flexible and powerful.
 
 define(["util", "class"], function(util) {
@@ -32,9 +32,9 @@ define(["util", "class"], function(util) {
 		},
 
 		/**
-		 * [The *on()* method. Use it to add functions to the delegate instance]
+		 * ### The **on()** method. Use it to add functions to the delegate instance.
 		 * @param  {String} name Id that the function will be associated with
-		 * @param  {Object} scope scope of the function, most of the time you will be passing 'this'.
+		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'.
 		 * @param  {Function} callback Function you want to execute.
 		 * @param  {Boolean} [removeOnExecute=false] The function will be removed from the corresponding list, after executing it once.
 		 * @param  {Boolean} [inmediate=false] Execute function inmediatelly after adding it.
@@ -64,6 +64,12 @@ define(["util", "class"], function(util) {
 			});
 		},
 
+		/**
+		 * The **.remove()** method. Removes the specified function from the array it is in.
+		 * @param  {String}   name Id the funtion you want to remove is associated with.
+		 * @param  {Object}   scope Scope used when adding the function to the delegate.
+		 * @param  {Function} callback Function you want to remove from the delegate.
+		 */
 		remove: function(name, scope, callback) {
 			this.list = this.callbackList[name];
 
@@ -78,6 +84,10 @@ define(["util", "class"], function(util) {
 			}
 		},
 
+		/**
+		 * The **.removeAll()** method. Remove all the funtions associated with an id.
+		 * @param  {String} name All funtions matching this Id will be removed from the delegate.
+		 */
 		removeAll: function(name) {
 			var list = this.callbackList[name];
 
@@ -88,6 +98,9 @@ define(["util", "class"], function(util) {
 			}
 		},
 
+		/**
+		 * The **.softCleanUp()** method. Remove every function in the delegate, except for the ones that were configured to be kept in the **.on()** method.
+		 */
 		softCleanUp: function() {
 			for (var k in this.callbackList) {
 				this.list = this.callbackList[k];
@@ -104,16 +117,27 @@ define(["util", "class"], function(util) {
 			}
 		},
 
+		/**
+		 * The **.hardCleanUp()** method. Remove every function in the delegate.
+		 */
 		hardCleanUp: function() {
 			for (var k in this.callbackList) {
 				this.removeAll(k);
 			}
 		},
 
+		/**
+		 * The **.destroy()** method. Get ready for garbage collection.
+		 */
 		destroy: function() {
 			util.destroyObject(this);
 		},
 
+		/**
+		 * The **.execute()** method. Use this to call all the methods registered using **.on()**.
+		 * @param  {String} name All the funtions registered with the id provided will be executed.
+		 * @param  {Object} args This Object will be passed as argument to all the funtions executed.
+		 */
 		execute: function(name, args) {
 			this.list = this.callbackList[name];
 
