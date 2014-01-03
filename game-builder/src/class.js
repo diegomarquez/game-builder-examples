@@ -1,14 +1,7 @@
 /* 
  * # JavaScript Inheritance
  * ### By [John Resig](http://ejohn.org/)
- * #### MIT Licensed.
- * -------------------------------------
- * 1.
- * 1.
- *  -
- *  -
- *    -
- *    -
+ * ### MIT Licensed.
  */
 // Inspired by [base2](https://code.google.com/p/base2/) and [Prototype](http://prototypejs.org/)
 (function(){
