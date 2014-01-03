@@ -65,7 +65,10 @@ define(["util", "class"], function(util) {
 			});
 		},
 
-		//--------------------------------
+		/**
+		 * --------------------------------
+		 *-------------------------------- 
+		 */
 
 		/**
 		 * The **.remove()** method. Removes the specified function from the array it is in.
@@ -88,7 +91,10 @@ define(["util", "class"], function(util) {
 			}
 		},
 
-		//--------------------------------
+		/**
+		 * --------------------------------
+		 *-------------------------------- 
+		 */
 
 		/**
 		 * The **.removeAll()** method. Remove all the funtions associated with an id.
@@ -105,7 +111,10 @@ define(["util", "class"], function(util) {
 			}
 		},
 
-		//--------------------------------
+		/**
+		 * --------------------------------
+		 *-------------------------------- 
+		 */
 
 		/**
 		 * The **.softCleanUp()** method. Remove every function in the delegate, except for the ones that were configured to be kept in the **.on()** method.
@@ -127,7 +136,10 @@ define(["util", "class"], function(util) {
 			}
 		},
 
-		//--------------------------------
+		/**
+		 * --------------------------------
+		 *-------------------------------- 
+		 */
 
 		/**
 		 * The **.hardCleanUp()** method. Remove every function in the delegate.
@@ -139,7 +151,10 @@ define(["util", "class"], function(util) {
 			}
 		},
 
-		//--------------------------------
+		/**
+		 * --------------------------------
+		 *-------------------------------- 
+		 */
 
 		/**
 		 * The **.destroy()** method. Get ready for garbage collection.
@@ -149,7 +164,10 @@ define(["util", "class"], function(util) {
 			util.destroyObject(this);
 		},
 
-		//--------------------------------
+		/**
+		 * --------------------------------
+		 *-------------------------------- 
+		 */
 
 		/**
 		 * The **.execute()** method. Use this to call all the methods registered using **.on()**.
@@ -177,7 +195,10 @@ define(["util", "class"], function(util) {
 			removeAllNulls(this.list);
 		}
 
-		//--------------------------------
+		/**
+		 * --------------------------------
+		 *-------------------------------- 
+		 */
 	});
 
 	return Delegate;
