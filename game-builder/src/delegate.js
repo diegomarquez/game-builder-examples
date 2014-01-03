@@ -3,9 +3,9 @@
  * ### By [Diego Enrique Marquez](http://treintipollo.com/)
  */
 
-// Dependencies: @util, @class
+// Dependencies: _util_, _class_
 
-// An implementation of a [Multicast Delegate](http://en.wikipedia.org/wiki/Delegation_pattern) 
+// An implementation of a [Multicast Delegate](http://en.wikipedia.org/wiki/Delegation_pattern). 
 // Sounds like a mouthful? The more friendly name is, 'Event system', which sounds about a million times less cool.
 
 // Basically this class is a hash, with each key of the hash being an array of functions. 
@@ -13,7 +13,7 @@
 // Add funtions using the .on() method, always providing an id and scope with the function.
 // At some point in the future call the method .execute() with a given id, all the funtions registered under the id provided will be executed.
 // Simple, flexible and powerful.
-// Keep reading for method signatures.
+
 define(["util", "class"], function(util) {
 	var removeAllNulls = function(list) {
 		for (var i = list.length - 1; i >= 0; i--) {
@@ -32,14 +32,14 @@ define(["util", "class"], function(util) {
 		},
 
 		/**
-		 * [Use this method to add functions to the delegate instance]
-		 * @param  {[String]} name - Id that the function will be associated with
-		 * @param  {[Object]} scope - scope of the function, most of the time you will be passing 'this'.
-		 * @param  {Function} callback - Function you want to execute.
-		 * @param  {[Boolean=false]} removeOnExecute - The function will be removed from the corresponding list, after executing it once.
-		 * @param  {[Boolean=false]} inmediate - Execute function inmediatelly after adding it.
-		 * @param  {[Boolean=false]} keepOnCleanUp - Save the function when executing the softCleanUp() method.
-		 * @param  {[Boolean=false]} single - Do not add function if there is already one with the same id.
+		 * [The *on()* method. Use it to add functions to the delegate instance]
+		 * @param  {String} name Id that the function will be associated with
+		 * @param  {Object} scope scope of the function, most of the time you will be passing 'this'.
+		 * @param  {Function} callback Function you want to execute.
+		 * @param  {Boolean} [removeOnExecute=false] The function will be removed from the corresponding list, after executing it once.
+		 * @param  {Boolean} [inmediate=false] Execute function inmediatelly after adding it.
+		 * @param  {Boolean} [keepOnCleanUp=false] Save the function when executing the softCleanUp() method.
+		 * @param  {Boolean} [single=false] Do not add function if there is already one with the same id.
 		 */
 		on: function(name, scope, callback, removeOnExecute, inmediate, keepOnCleanUp, single) {
 			if (!this.callbackList[name]) {
