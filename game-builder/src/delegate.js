@@ -32,7 +32,7 @@ define(["util", "class"], function(util) {
 		},
 
 		/**
-		 * ### The **.on()** method. Use it to add functions to the delegate instance.
+		 * The **.on()** method. Use it to add functions to the delegate instance.
 		 * @param  {String} name Id that the function will be associated with
 		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'.
 		 * @param  {Function} callback Function you want to execute.
@@ -65,6 +65,8 @@ define(["util", "class"], function(util) {
 			});
 		},
 
+		//--------------------------------
+
 		/**
 		 * The **.remove()** method. Removes the specified function from the array it is in.
 		 * @param  {String}   name Id the funtion you want to remove is associated with.
@@ -86,6 +88,8 @@ define(["util", "class"], function(util) {
 			}
 		},
 
+		//--------------------------------
+
 		/**
 		 * The **.removeAll()** method. Remove all the funtions associated with an id.
 		 * @param  {String} name All funtions matching this Id will be removed from the delegate.
@@ -100,6 +104,8 @@ define(["util", "class"], function(util) {
 				list = null;
 			}
 		},
+
+		//--------------------------------
 
 		/**
 		 * The **.softCleanUp()** method. Remove every function in the delegate, except for the ones that were configured to be kept in the **.on()** method.
@@ -121,6 +127,8 @@ define(["util", "class"], function(util) {
 			}
 		},
 
+		//--------------------------------
+
 		/**
 		 * The **.hardCleanUp()** method. Remove every function in the delegate.
 		 * @return {null}
@@ -131,6 +139,8 @@ define(["util", "class"], function(util) {
 			}
 		},
 
+		//--------------------------------
+
 		/**
 		 * The **.destroy()** method. Get ready for garbage collection.
 		 * @return {null}
@@ -138,6 +148,8 @@ define(["util", "class"], function(util) {
 		destroy: function() {
 			util.destroyObject(this);
 		},
+
+		//--------------------------------
 
 		/**
 		 * The **.execute()** method. Use this to call all the methods registered using **.on()**.
@@ -164,6 +176,8 @@ define(["util", "class"], function(util) {
 
 			removeAllNulls(this.list);
 		}
+
+		//--------------------------------
 	});
 
 	return Delegate;
