@@ -32,7 +32,7 @@ define(["util", "class"], function(util) {
 		},
 
 		/**
-		 * ### The **on()** method. Use it to add functions to the delegate instance.
+		 * ### The **.on()** method. Use it to add functions to the delegate instance.
 		 * @param  {String} name Id that the function will be associated with
 		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'.
 		 * @param  {Function} callback Function you want to execute.
@@ -40,6 +40,7 @@ define(["util", "class"], function(util) {
 		 * @param  {Boolean} [inmediate=false] Execute function inmediatelly after adding it.
 		 * @param  {Boolean} [keepOnCleanUp=false] Save the function when executing the softCleanUp() method.
 		 * @param  {Boolean} [single=false] Do not add function if there is already one with the same id.
+		 * @return
 		 */
 		on: function(name, scope, callback, removeOnExecute, inmediate, keepOnCleanUp, single) {
 			if (!this.callbackList[name]) {
@@ -69,6 +70,7 @@ define(["util", "class"], function(util) {
 		 * @param  {String}   name Id the funtion you want to remove is associated with.
 		 * @param  {Object}   scope Scope used when adding the function to the delegate.
 		 * @param  {Function} callback Function you want to remove from the delegate.
+		 * @return
 		 */
 		remove: function(name, scope, callback) {
 			this.list = this.callbackList[name];
@@ -87,6 +89,7 @@ define(["util", "class"], function(util) {
 		/**
 		 * The **.removeAll()** method. Remove all the funtions associated with an id.
 		 * @param  {String} name All funtions matching this Id will be removed from the delegate.
+		 * @return
 		 */
 		removeAll: function(name) {
 			var list = this.callbackList[name];
@@ -100,6 +103,7 @@ define(["util", "class"], function(util) {
 
 		/**
 		 * The **.softCleanUp()** method. Remove every function in the delegate, except for the ones that were configured to be kept in the **.on()** method.
+		 * @return
 		 */
 		softCleanUp: function() {
 			for (var k in this.callbackList) {
@@ -119,6 +123,7 @@ define(["util", "class"], function(util) {
 
 		/**
 		 * The **.hardCleanUp()** method. Remove every function in the delegate.
+		 * @return
 		 */
 		hardCleanUp: function() {
 			for (var k in this.callbackList) {
@@ -128,6 +133,7 @@ define(["util", "class"], function(util) {
 
 		/**
 		 * The **.destroy()** method. Get ready for garbage collection.
+		 * @return
 		 */
 		destroy: function() {
 			util.destroyObject(this);
@@ -137,6 +143,7 @@ define(["util", "class"], function(util) {
 		 * The **.execute()** method. Use this to call all the methods registered using **.on()**.
 		 * @param  {String} name All the funtions registered with the id provided will be executed.
 		 * @param  {Object} args This Object will be passed as argument to all the funtions executed.
+		 * @return
 		 */
 		execute: function(name, args) {
 			this.list = this.callbackList[name];
