@@ -13,6 +13,9 @@
 // Add funtions using the **.on()** method, always providing an id and scope with the function.
 // At some point in the future call the method **.execute()** with a given id, all the funtions registered under the id provided will be executed.
 // Simple, flexible and powerful.
+/**
+ * --------------------------------
+ */
 
 define(["util", "class"], function(util) {
 	var removeAllNulls = function(list) {
@@ -64,10 +67,8 @@ define(["util", "class"], function(util) {
 				keep: keepOnCleanUp
 			});
 		},
-
 		/**
 		 * --------------------------------
-		 *-------------------------------- 
 		 */
 
 		/**
@@ -90,10 +91,8 @@ define(["util", "class"], function(util) {
 				}
 			}
 		},
-
 		/**
 		 * --------------------------------
-		 *-------------------------------- 
 		 */
 
 		/**
@@ -110,10 +109,8 @@ define(["util", "class"], function(util) {
 				list = null;
 			}
 		},
-
 		/**
 		 * --------------------------------
-		 *-------------------------------- 
 		 */
 
 		/**
@@ -135,10 +132,8 @@ define(["util", "class"], function(util) {
 				}
 			}
 		},
-
 		/**
 		 * --------------------------------
-		 *-------------------------------- 
 		 */
 
 		/**
@@ -150,10 +145,8 @@ define(["util", "class"], function(util) {
 				this.removeAll(k);
 			}
 		},
-
 		/**
 		 * --------------------------------
-		 *-------------------------------- 
 		 */
 
 		/**
@@ -163,10 +156,8 @@ define(["util", "class"], function(util) {
 		destroy: function() {
 			util.destroyObject(this);
 		},
-
 		/**
 		 * --------------------------------
-		 *-------------------------------- 
 		 */
 
 		/**
@@ -194,10 +185,8 @@ define(["util", "class"], function(util) {
 
 			removeAllNulls(this.list);
 		}
-
 		/**
 		 * --------------------------------
-		 *-------------------------------- 
 		 */
 	});
 
