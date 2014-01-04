@@ -9,8 +9,8 @@
  *
  * Basically this class is a hash, with each key of the hash being an array of functions. 
  *
- * Add funtions using **on**, always providing an id and scope with the function.
- * At some point in the future call the method **execute** with a given id, all the funtions registered under the id provided will be executed.
+ * Add funtions using <strong>on</strong>, always providing an id and scope with the function.
+ * At some point in the future call the method <strong>execute</strong> with a given id, all the funtions registered under the id provided will be executed.
  */
 
 /**
@@ -39,7 +39,7 @@ define(["util", "class"], function(util) {
 		},
 
 		/**
-		 * <p style='color:#AD071D'>**on** Use it to add functions to the delegate instance.</p>
+		 * <p style='color:#AD071D'><strong>on</strong> Use it to add functions to the delegate instance.</p>
 		 * @param  {String} name Id that the function will be associated with
 		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'.
 		 * @param  {Function} callback Function you want to execute.
@@ -76,7 +76,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'>**remove** Removes the specified function from the array it is in.</p>
+		 * <p style='color:#AD071D'><strong>remove</strong> Removes the specified function from the array it is in.</p>
 		 * @param  {String}   name Id the funtion you want to remove is associated with.
 		 * @param  {Object}   scope Scope used when adding the function to the delegate.
 		 * @param  {Function} callback Function you want to remove from the delegate.
@@ -100,7 +100,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'>**removeAll** Removes all the funtions associated with an id.</p>
+		 * <p style='color:#AD071D'><strong>removeAll</strong> Removes all the funtions associated with an id.</p>
 		 * @param  {String} name All funtions matching this Id will be removed from the delegate.
 		 * @return {null}
 		 */
@@ -118,7 +118,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'>**softCleanUp** Removes every function in the delegate, except for the ones that were configured to be kept in **on**.</p>
+		 * <p style='color:#AD071D'><strong>softCleanUp</strong> Removes every function in the delegate, except for the ones that were configured to be kept in <strong>on</strong>.</p>
 		 * @return {null}
 		 */
 		softCleanUp: function() {
@@ -141,7 +141,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'>**hardCleanUp** Removes every function in the delegate.</p>
+		 * <p style='color:#AD071D'><strong>hardCleanUp</strong> Removes every function in the delegate.</p>
 		 * @return {null}
 		 */
 		hardCleanUp: function() {
@@ -154,7 +154,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'>**destroy** Gets ready for garbage collection.</p>
+		 * <p style='color:#AD071D'><strong>destroy</strong> Gets ready for garbage collection.</p>
 		 * @return {null}
 		 */
 		destroy: function() {
@@ -165,7 +165,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'>**execute** Use this to call all the methods registered using **on**.</p>
+		 * <p style='color:#AD071D'><strong>execute</strong> Use this to call all the methods registered using <strong>on</strong>.</p>
 		 * @param  {String} name All the funtions registered with the id provided will be executed.
 		 * @param  {Object} args This Object will be passed as argument to all the funtions executed.
 		 * @return {null}
