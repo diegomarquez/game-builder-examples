@@ -39,7 +39,7 @@ define(["util", "class"], function(util) {
 		},
 
 		/**
-		 * <style=color:#AD071D>**on** Use it to add functions to the delegate instance.</style>
+		 * <p style='color:#AD071D'>**on** Use it to add functions to the delegate instance.</p>
 		 * @param  {String} name Id that the function will be associated with
 		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'.
 		 * @param  {Function} callback Function you want to execute.
@@ -76,7 +76,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <style=color:#AD071D>**remove** Removes the specified function from the array it is in.</style>
+		 * <p style='color:#AD071D'>**remove** Removes the specified function from the array it is in.</p>
 		 * @param  {String}   name Id the funtion you want to remove is associated with.
 		 * @param  {Object}   scope Scope used when adding the function to the delegate.
 		 * @param  {Function} callback Function you want to remove from the delegate.
@@ -100,7 +100,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <style=color:#AD071D>**removeAll** Removes all the funtions associated with an id.</style>
+		 * <p style='color:#AD071D'>**removeAll** Removes all the funtions associated with an id.</p>
 		 * @param  {String} name All funtions matching this Id will be removed from the delegate.
 		 * @return {null}
 		 */
@@ -118,7 +118,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <style=color:#AD071D>**softCleanUp** Removes every function in the delegate, except for the ones that were configured to be kept in **on**.</style>
+		 * <p style='color:#AD071D'>**softCleanUp** Removes every function in the delegate, except for the ones that were configured to be kept in **on**.</p>
 		 * @return {null}
 		 */
 		softCleanUp: function() {
@@ -141,7 +141,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <style=color:#AD071D>**hardCleanUp** Removes every function in the delegate.</style>
+		 * <p style='color:#AD071D'>**hardCleanUp** Removes every function in the delegate.</p>
 		 * @return {null}
 		 */
 		hardCleanUp: function() {
@@ -154,7 +154,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <style=color:#AD071D>**destroy** Gets ready for garbage collection.</style>
+		 * <p style='color:#AD071D'>**destroy** Gets ready for garbage collection.</p>
 		 * @return {null}
 		 */
 		destroy: function() {
@@ -165,7 +165,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <style=color:#AD071D>**execute** Use this to call all the methods registered using **on**.</style>
+		 * <p style='color:#AD071D'>**execute** Use this to call all the methods registered using **on**.</p>
 		 * @param  {String} name All the funtions registered with the id provided will be executed.
 		 * @param  {Object} args This Object will be passed as argument to all the funtions executed.
 		 * @return {null}
