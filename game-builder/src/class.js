@@ -1,9 +1,15 @@
 /* 
- * # JavaScript Inheritance
+ * # class.js
  * ### By [John Resig](http://ejohn.org/)
  * ### MIT Licensed.
  */
-// Inspired by [base2](https://code.google.com/p/base2/) and [Prototype](http://prototypejs.org/)
+
+/**
+ * Simple JavaScript Inheritance
+ * --------------------------------
+ *
+ * Inspired by [base2](https://code.google.com/p/base2/) and [Prototype](http://prototypejs.org/)
+ */
 (function(){
   var initializing = false, fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
  
