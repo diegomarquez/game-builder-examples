@@ -1,16 +1,19 @@
 /**
- * # Delegate
+ * # delegate.js
  * ### By [Diego Enrique Marquez](http://treintipollo.com/)
  *
- * Dependencies: [util, class]
+ * Dependencies: [util](@@util), [class](@@class)
  *
- * An implementation of a [Multicast Delegate](http://en.wikipedia.org/wiki/Delegation_pattern). 
- * Sounds like a mouthful? The more friendly name is, 'Event system', which sounds about a million times less cool.
+ * A @@requireJS module implementing a [Multicast Delegate](http://en.wikipedia.org/wiki/Delegation_pattern). 
+ * Sounds like a mouthful? The more friendly name is, 'Event System', which sounds about a million times less cool.
+ *
+ * Now you know what the hell every is trying to talk about when they mention events.
  *
  * Basically this class is a hash, with each key of the hash being an array of functions. 
  *
  * Add funtions using <strong>on</strong>, always providing an id and scope with the function.
- * At some point in the future call the method <strong>execute</strong> with a given id, all the funtions registered under the id provided will be executed.
+ * At some point in the future call the method <strong>execute</strong>, passing an id. 
+ * All the functions registered under the id provided will be executed in the order they were added.
  */
 
 /**
