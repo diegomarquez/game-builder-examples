@@ -10,13 +10,17 @@
 
 // Basically this class is a hash, with each key of the hash being an array of functions. 
 
-// Add funtions using the **.on()** method, always providing an id and scope with the function.
-// At some point in the future call the method **.execute()** with a given id, all the funtions registered under the id provided will be executed.
-// Simple, flexible and powerful.
+// Add funtions using **on()**, always providing an id and scope with the function.
+// At some point in the future call the method **execute()** with a given id, all the funtions registered under the id provided will be executed.
+
 /**
+ * Simple, flexible and powerful.
  * --------------------------------
  */
 
+/**
+ * --------------------------------
+ */
 define(["util", "class"], function(util) {
 	var removeAllNulls = function(list) {
 		for (var i = list.length - 1; i >= 0; i--) {
@@ -35,13 +39,13 @@ define(["util", "class"], function(util) {
 		},
 
 		/**
-		 * The **.on()** method. Use it to add functions to the delegate instance.
+		 * <font color="red">**on()** Use it to add functions to the delegate instance</font>.
 		 * @param  {String} name Id that the function will be associated with
 		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'.
 		 * @param  {Function} callback Function you want to execute.
 		 * @param  {Boolean} [removeOnExecute=false] The function will be removed from the corresponding list, after executing it once.
 		 * @param  {Boolean} [inmediate=false] Execute function inmediatelly after adding it.
-		 * @param  {Boolean} [keepOnCleanUp=false] Save the function when executing the softCleanUp() method.
+		 * @param  {Boolean} [keepOnCleanUp=false] Save the function when executing the **softCleanUp()**.
 		 * @param  {Boolean} [single=false] Do not add function if there is already one with the same id.
 		 * @return {null}
 		 */
@@ -72,7 +76,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * The **.remove()** method. Removes the specified function from the array it is in.
+		 * **remove()** Removes the specified function from the array it is in.
 		 * @param  {String}   name Id the funtion you want to remove is associated with.
 		 * @param  {Object}   scope Scope used when adding the function to the delegate.
 		 * @param  {Function} callback Function you want to remove from the delegate.
@@ -96,7 +100,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * The **.removeAll()** method. Remove all the funtions associated with an id.
+		 * **removeAll()** Removes all the funtions associated with an id.
 		 * @param  {String} name All funtions matching this Id will be removed from the delegate.
 		 * @return {null}
 		 */
@@ -114,7 +118,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * The **.softCleanUp()** method. Remove every function in the delegate, except for the ones that were configured to be kept in the **.on()** method.
+		 * **softCleanUp()** Removes every function in the delegate, except for the ones that were configured to be kept in **on()**.
 		 * @return {null}
 		 */
 		softCleanUp: function() {
@@ -137,7 +141,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * The **.hardCleanUp()** method. Remove every function in the delegate.
+		 * **hardCleanUp** Removes every function in the delegate.
 		 * @return {null}
 		 */
 		hardCleanUp: function() {
@@ -150,7 +154,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * The **.destroy()** method. Get ready for garbage collection.
+		 * **destroy()** Gets ready for garbage collection.
 		 * @return {null}
 		 */
 		destroy: function() {
@@ -161,7 +165,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * The **.execute()** method. Use this to call all the methods registered using **.on()**.
+		 * **execute()** Use this to call all the methods registered using **on()**.
 		 * @param  {String} name All the funtions registered with the id provided will be executed.
 		 * @param  {Object} args This Object will be passed as argument to all the funtions executed.
 		 * @return {null}
