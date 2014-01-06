@@ -10,9 +10,9 @@
 define(function(require) {
 	var main = function() {
 		gjs.game.on("init", this, function() {
-			//The first thing to do is get a hold to a reference to the state_machine_factory.
+			//The first thing to do is get a hold to a reference to the state-machine_factory.
 			//This thing will let you instantiate different kinds of state machines and their states.
-			var stateMachineFactory = require('state_machine_factory');
+			var stateMachineFactory = require('state-machine_factory');
 
 			//Will be using this module to control the navigation through the different states
 			//of a state machine.

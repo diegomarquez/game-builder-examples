@@ -1,11 +1,11 @@
 define(function(require) {
-	var container = require('basic_container');
-	var basic_game_object = require('basic_game_object'); 
-	var box_renderer = require('box_renderer');
+	var container = require('basic-container');
+	var basic_game_object = require('basic-game-object'); 
+	var box_renderer = require('box-renderer');
 
 	var NestingBundle = require('bundle').extend({
 		create: function() {
-			//Create a 'basic_game_object' components pool and give it the id 'Base'
+			//Create a 'basic-game-object' components pool and give it the id 'Base'
 			// Note: In this particular example this pool only uses objects which will be childs of a container.
 			// For that reason it is not needed to specify an amount. The amount needed will be infered from
 			// from the amount of parent game objects using those children.
@@ -15,7 +15,7 @@ define(function(require) {
 			// For this example we will be using 1 container.
 			this.gameObjectPool.createPool("Container", container, 2);
 
-			//Here we can see that the x and y properties of a game_object are relative to 
+			//Here we can see that the x and y properties of a game-object are relative to 
 			//the respective parent. In the previous example since the parent was the root,
 			//the position seemed like canvas coordinates
 			this.gameObjectPool.createConfiguration("Base_1", "Base")
@@ -39,7 +39,7 @@ define(function(require) {
 				.addChild("Base_3")
 				.setRenderer('White_Renderer');
 
-			//Create a 'box_renderer' components pool and give it the id 'Box_Renderer'
+			//Create a 'box-renderer' components pool and give it the id 'box-renderer'
 			this.componentPool.createPool("Box_Renderer", box_renderer);
 
 			//Create a few configurations for the components in the pool 'Box_Renderer'

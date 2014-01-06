@@ -1,12 +1,12 @@
 define(function(require) {
-	var basic_game_object = require('basic_game_object'); 
-	var box_renderer = require('box_renderer');
+	var basic_game_object = require('basic-game-object'); 
+	var box_renderer = require('box-renderer');
 
 	var CollidersBundle = require('bundle').extend({
 		create: function() {
-			this.componentPool.createPool("Box_Renderer", box_renderer);
+			this.componentPool.createPool("box-renderer", box_renderer);
 			
-			this.componentPool.createConfiguration("Small_box", 'Box_Renderer')
+			this.componentPool.createConfiguration("Small_box", 'box-renderer')
 				.args({
 						offsetX: -10, 
 						offsetY: -10, 

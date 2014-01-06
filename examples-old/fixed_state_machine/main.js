@@ -1,13 +1,13 @@
 //An example on a different kind of state machine.
-//The fixed_state_machine. There will be less comment rambling here.
-//If you want to read that, go to the loose_state_machine example.
+//The fixed_state-machine. There will be less comment rambling here.
+//If you want to read that, go to the loose_state-machine example.
 
 //In this example we will also see how to separate state code in different files.
 
 define(function(require) {
 	var main = function() {
 		gjs.game.on("init", this, function() {
-			var stateMachineFactory = require('state_machine_factory');
+			var stateMachineFactory = require('state-machine_factory');
 
 			//This will create a loose state machine.
 			//By fixed I mean that the next and previous state of the current executing state

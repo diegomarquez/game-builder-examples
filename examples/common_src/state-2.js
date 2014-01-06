@@ -1,5 +1,5 @@
 define(function(require) {
-	var state_machine_factory = require("state_machine");
+	var state_machine_factory = require("state-machine");
 	var keyboard = require('keyboard');
 
 	//Notice how a function is returned when defining a state.
@@ -13,11 +13,11 @@ define(function(require) {
 		var state = state_machine_factory.createState(this, name);
 
 		var onNext = function() {
-			state.execute('next', {nextInitArgs:'Hello from state 3', lastCompleteArgs:'Good bye state 3'});
+			state.execute('next', {nextInitArgs:'Hello from state 2', lastCompleteArgs:'Good bye state 2'});
 		};
 
 		var onPrevious = function() {
-			state.execute('previous', {nextInitArgs:'Hello from state 3', lastCompleteArgs:'Good bye state 3'});
+			state.execute('previous', {nextInitArgs:'Hello from state 2', lastCompleteArgs:'Good bye state 2'});
 		};
 
 		var setupKeyboardCallbacks = function() {
@@ -31,14 +31,14 @@ define(function(require) {
 		};
 
 		state.addStartAction(function(args){
-			console.log("Entering State 3");
+			console.log("Entering State 2");
 			console.log(args);
 		});
 
 		state.addStartAction(setupKeyboardCallbacks);
 
 		state.addCompleteAction(function(args){
-			console.log("Exiting State 3");
+			console.log("Exiting State 2");
 			console.log(args);
 		});
 

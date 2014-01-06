@@ -1,7 +1,7 @@
-//This example uses the reclaimer objects to reclaim all game_objects of a certain type.
+//This example uses the reclaimer objects to reclaim all game-objects of a certain type.
 //Usefull for clearing the scene of all objects or just a set of them.
 
-gjs.setModulePath('layering_bundle');
+gjs.setModulePath('layering-bundle');
 
 define(function(require) {
 	var main = function() {
@@ -10,7 +10,7 @@ define(function(require) {
 			var reclaimer = require('reclaimer');
 			var keyboard = require('keyboard');
 
-			require('layering_bundle').create();
+			require('layering-bundle').create();
 
 			gjs.layers.get('Front').add(gjs.assembler.get('Base_3')).start();
 			gjs.layers.get('Middle').add(gjs.assembler.get('Base_2')).start();

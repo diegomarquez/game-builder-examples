@@ -1,15 +1,15 @@
 define(['component'], function(Component){
-	//Here the parent property refers to the game_object that has this component attached.
+	//Here the parent property refers to the game-object that has this component attached.
 	//This logic is rather mundane, but it's just an example.
 	var Component = Component.extend({
-		//As expected this is called when the parent game_object is started.
+		//As expected this is called when the parent game-object is started.
 		start: function() {
 			this.startPos = false;
 			this.lastX;
 			this.lastY;
 		},
 
-		//This is called after the update of the parent game_object
+		//This is called after the update of the parent game-object
 		update: function() {
 			if(this.startPos){
 				this.parent.x = this.lastX;

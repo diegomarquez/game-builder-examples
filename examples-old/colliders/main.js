@@ -1,4 +1,4 @@
-//This example will be showing how to setup some colliders for our game_objects
+//This example will be showing how to setup some colliders for our game-objects
 //Nothing fancy here, no per pixel collision, no broad-phase of any sort and no projection.
 
 //Only basic collision detection. Things overlap or they don't. That is it.
@@ -12,25 +12,25 @@
 
 //Anyway...
 
-gjs.setModulePath('colliders_bundle');
+gjs.setModulePath('colliders-bundle');
 
 define(function(require) {
 		var main = function(){
 			gjs.game.on("init", this, function() {
 				//This pool setup bundle creates all the things this example will be using
-				require('colliders_bundle').create();
+				require('colliders-bundle').create();
 
 				//This guy will be responsible for making everything work. And for setting collision pairs.
 				//More on that later
-				var collision_resolver = require('collision_resolver');
+				var collision_resolver = require('collision-resolver');
 
 				//Setting up collision pairs. The IDs used correspond to the ones in the colliders configuration.
 				//All colliders with ID 'Circle_1' will check for overlapping against all colliders with ID 'Polygon_1'
-				collision_resolver.addCollisionPair('Circle_Collider_ID', 'Polygon_Collider_ID');
+				collision_resolver.addCollisionPair('circle-collider_ID', 'polygon-collider_ID');
 				//All colliders with ID 'Circle_1' will check for overlapping against all colliders with ID 'Fixed_Polygon_1'
-				collision_resolver.addCollisionPair('Circle_Collider_ID', 'Fixed_Polygon_Collider_ID');
+				collision_resolver.addCollisionPair('circle-collider_ID', 'fixed-polygon-collider_ID');
 				//All colliders with ID 'Fixed_Polygon_1' will check for overlapping against all colliders with ID 'Polygon_1'
-				collision_resolver.addCollisionPair('Fixed_Polygon_Collider_ID', 'Polygon_Collider_ID');		
+				collision_resolver.addCollisionPair('fixed-polygon-collider_ID', 'polygon-collider_ID');		
 
 				gjs.layers.get('Middle').add(gjs.assembler.get('Base_1')).start();
 				gjs.layers.get('Middle').add(gjs.assembler.get('Base_2')).start();		

@@ -1,5 +1,5 @@
 define(function(require) {
-	var state_machine_factory = require("state_machine");
+	var state_machine_factory = require("state-machine");
 	var keyboard = require('keyboard');
 
 	//Notice how a function is returned when defining a state.
@@ -13,11 +13,11 @@ define(function(require) {
 		var state = state_machine_factory.createState(this, name);
 
 		var onNext = function() {
-			state.execute('next', {nextInitArgs:'Hello from state 1', lastCompleteArgs:'Good bye state 1'});
+			state.execute('next', {nextInitArgs:'Hello from state 3', lastCompleteArgs:'Good bye state 3'});
 		};
 
 		var onPrevious = function() {
-			state.execute('previous', {nextInitArgs:'Hello from state 1', lastCompleteArgs:'Good bye state 1'});
+			state.execute('previous', {nextInitArgs:'Hello from state 3', lastCompleteArgs:'Good bye state 3'});
 		};
 
 		var setupKeyboardCallbacks = function() {
@@ -30,22 +30,15 @@ define(function(require) {
 			keyboard.removeKeyUp(keyboard.D, this, onPrevious);	
 		};
 
-		//As you can see we are able to add as many 
-		//functions to be executed for either start, complete or update.
-		//These are execued in the order they were added.
-
-		//For this particular example we are removing keyboard callbacks as soon as we leave a state
-		//We don't want this callbacks to be executed while we are not in this state.
-
 		state.addStartAction(function(args){
-			console.log("Entering State 1");
+			console.log("Entering State 3");
 			console.log(args);
 		});
 
 		state.addStartAction(setupKeyboardCallbacks);
 
 		state.addCompleteAction(function(args){
-			console.log("Exiting State 1");
+			console.log("Exiting State 3");
 			console.log(args);
 		});
 

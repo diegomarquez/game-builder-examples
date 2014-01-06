@@ -1,12 +1,12 @@
 define(function(require) {	
-	var basic_game_object = require('basic_game_object'); 
-	var box_renderer = require('box_renderer');
+	var basic_game_object = require('basic-game-object'); 
+	var box_renderer = require('box-renderer');
 
 	var LayeringBundle = require('bundle').extend({
 		create: function() {
-			this.componentPool.createPool("Box_Renderer", box_renderer);
+			this.componentPool.createPool("box-renderer", box_renderer);
 
-			this.componentPool.createConfiguration("Red_Renderer", 'Box_Renderer').args({
+			this.componentPool.createConfiguration("Red_Renderer", 'box-renderer').args({
 				color: '#FF0000',
 				offsetX: -50,
 				offsetY: -50,
@@ -14,7 +14,7 @@ define(function(require) {
 				height: 100
 			});
 
-			this.componentPool.createConfiguration("Green_Renderer", 'Box_Renderer').args({
+			this.componentPool.createConfiguration("Green_Renderer", 'box-renderer').args({
 				color: '#00FF00',
 				offsetX: -50,
 				offsetY: -50,
@@ -22,7 +22,7 @@ define(function(require) {
 				height: 100
 			});
 
-			this.componentPool.createConfiguration("Blue_Renderer", 'Box_Renderer').args({
+			this.componentPool.createConfiguration("Blue_Renderer", 'box-renderer').args({
 				color: '#0000FF',
 				offsetX: -50,
 				offsetY: -50,
@@ -60,7 +60,3 @@ define(function(require) {
 
 	return new LayeringBundle();
 });
-
-		
-
-				

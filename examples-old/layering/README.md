@@ -1,6 +1,6 @@
 [example]: http://diegomarquez.github.io/game/examples/layering/index.html
 [bundles]: ../resources/bundles
-[bundle]: ../resources/bundles/layering_bundle.js
+[bundle]: ../resources/bundles/layering-bundle.js
 
 [css]: ./main.css
 [main]: ./main.js
@@ -10,13 +10,13 @@
 [layers]: ../../src/hierarchy/layers.js
 [assembler]: ../../src/pools/assembler.js
 
-[game_object]: ../../src/hierarchy/game_object.js
+[game-object]: ../../src/hierarchy/game-object.js
 [renderer]: ../../src/components/rendering/renderer.js
-[game_object_container]: ../../src/hierarchy/game_object_container.js
+[game-object-container]: ../../src/hierarchy/game-object-container.js
 
-[basic_game_object]: ../resources/basic_game_object.js
-[box_renderer]: ../resources/box_renderer.js
-[basic_container]: ../resources/basic_container.js
+[basic-game-object]: ../resources/basic-game-object.js
+[box-renderer]: ../resources/box-renderer.js
+[basic-container]: ../resources/basic-container.js
 
 # Use layers to manage drawing order with precision.
 
@@ -43,7 +43,7 @@
 **********
 
 ```javascript
-require('layering_bundle').create();  
+require('layering-bundle').create();  
 ```
 
 [The bundle file used in this example][bundle]

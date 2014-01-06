@@ -1,8 +1,8 @@
 define(function(require) {	
-	var basic_game_object = require('basic_game_object'); 
-	var box_renderer = require('box_renderer');		
+	var basic_game_object = require('basic-game-object'); 
+	var box_renderer = require('box-renderer');		
 	//The cleverly named component we will be using in this example
-	var component = require('component_1');
+	var component = require('component-1');
 
 	var LogicBundle = require('bundle').extend({
 		create: function() {

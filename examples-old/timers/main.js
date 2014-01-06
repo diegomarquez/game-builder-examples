@@ -1,4 +1,4 @@
-//This example will deal with the timer_factory module.
+//This example will deal with the timer-factory module.
 //This module exists because Javascript's setTimeout and setInterval methods work,
 //but they are a bit lacking in functionality.
 
@@ -11,22 +11,22 @@
 define(function(require) {
 	var main = function() {
 		gjs.game.on("init", this, function() {			
-			var timer_factory = require('timer_factory');
+			var timer-factory = require('timer-factory');
 			//Will be using this module to control the creation, start, pause and stop timers
 			var keyboard = require('keyboard');
 
 			//Create and configure a freash batch of timers
 			keyboard.onKeyDown(keyboard.Z, this, function() { 
 				//Making sure we have a clean slate each time
-				timer_factory.removeAll().now();
+				timer-factory.removeAll().now();
 
 				//Creating the timers
 				//This creates a timer object, it has 3 arguments
 				//1) It becomes part of the scope 'this' (or any other scope passed), 
 				//2) It belongs to the group 'timer_1'
 				//3) And can be accessed in the scope specified in 1) through the name 'my_timer' 
-				timer_factory.get(this, 'timer_1', 'my_timer_1');
-				timer_factory.get(this, 'timer_1', 'my_timer_2');
+				timer-factory.get(this, 'timer_1', 'my_timer_1');
+				timer-factory.get(this, 'timer_1', 'my_timer_2');
 
 				//Configuring the timers
 				this.my_timer_1.configure({ delay: 3000 });
@@ -44,14 +44,14 @@ define(function(require) {
 
 				//Start the timer
 				console.log('my_timer_1 started');
-				console.log('Total timer amount in factory: ' + timer_factory.timeOuts.length);
+				console.log('Total timer amount in factory: ' + timer-factory.timeOuts.length);
 
 				this.my_timer_1.start();
 				//This callback will be called when the repeate count reaches 0
-				//The scope of this callback is the one specified when creating the timer with timer_factory.get
+				//The scope of this callback is the one specified when creating the timer with timer-factory.get
 				this.my_timer_1.on('remove', function() {
 					console.log('my_timer_1 completed and destroyed');
-					console.log('Total timer amount in factory: ' + timer_factory.timeOuts.length)
+					console.log('Total timer amount in factory: ' + timer-factory.timeOuts.length)
 				});
 			});
 	
@@ -62,7 +62,7 @@ define(function(require) {
 				if (!this.my_timer_2) return
 
 				console.log('my_timer_2 started')
-				console.log('Total timer amount in factory: ' + timer_factory.timeOuts.length);
+				console.log('Total timer amount in factory: ' + timer-factory.timeOuts.length);
 
 				this.my_timer_2.start();
 
@@ -72,7 +72,7 @@ define(function(require) {
 
 				this.my_timer_2.on('complete', function() {
 					console.log('my_timer_2 completed');
-					console.log('Total timer amount in factory: ' + timer_factory.timeOuts.length);
+					console.log('Total timer amount in factory: ' + timer-factory.timeOuts.length);
 
 					//Re configure
 					this.my_timer_2.configure({ delay: 5000, repeatCount:1, removeOnComplete:true});
@@ -81,7 +81,7 @@ define(function(require) {
 
 				this.my_timer_2.on('remove', function() {
 					console.log('my_timer_2 completed and destroyed');
-					console.log('Total timer amount in factory: ' + timer_factory.timeOuts.length)
+					console.log('Total timer amount in factory: ' + timer-factory.timeOuts.length)
 				});
 			});
 
@@ -100,16 +100,16 @@ define(function(require) {
 			// Additional callbacks include 'repeate' and 'complete'
 
 			//to control timers in bulk 
-				//timer_factory.startAll().now()
-				//timer_factory.resetAll().now() // Resets all timers. They are stopped and started from the beginning inmediately.
-				//timer_factory.stopAll().now() 
-				//timer_factory.pauseAll().now()
-				//timer_factory.resumeAll().now()
-				//timer_factory.removeAll().now() // Remove all timers from the factory, never to be seen again.
+				//timer-factory.startAll().now()
+				//timer-factory.resetAll().now() // Resets all timers. They are stopped and started from the beginning inmediately.
+				//timer-factory.stopAll().now() 
+				//timer-factory.pauseAll().now()
+				//timer-factory.resumeAll().now()
+				//timer-factory.removeAll().now() // Remove all timers from the factory, never to be seen again.
 
 			//There is a variation to those methods which is not so obvious though
-				//timer_factory.stopAll().which('name', 'timer_1'), will stop all timers with a name of 'timer_1'
-				//timer_factory.stopAll().which('owner', this), will stop all timers whose owner is 'this'
+				//timer-factory.stopAll().which('name', 'timer_1'), will stop all timers with a name of 'timer_1'
+				//timer-factory.stopAll().which('owner', this), will stop all timers whose owner is 'this'
 
 			//Same goes for the other variations of the same methods. 
 		});

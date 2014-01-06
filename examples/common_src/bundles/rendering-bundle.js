@@ -1,13 +1,13 @@
 define(function(require) {
-	var basic_game_object = require('basic_game_object');
-	var bitmap_renderer = require('bitmap_renderer');
+	var basic_game_object = require('basic-game-object');
+	var bitmap_renderer = require('bitmap-renderer');
 
 	var RenderingBundle = require('bundle').extend({
 		create: function() {
 			this.componentPool.createPool("Bitmap_Renderer", bitmap_renderer);
 
-			this.componentPool.createConfiguration("Pear_1", 'Bitmap_Renderer').args({ offset:'center', path: '../../common_assets/images/80343865.jpg'});
-			this.componentPool.createConfiguration("Pear_2", 'Bitmap_Renderer').args({ path:'../../common_assets/images/80343865.jpg'});
+			this.componentPool.createConfiguration("Pear_1", 'Bitmap_Renderer').args({ offset:'center', path: '../common_assets/images/80343865.jpg'});
+			this.componentPool.createConfiguration("Pear_2", 'Bitmap_Renderer').args({ path:'../common_assets/images/80343865.jpg'});
 
 			this.gameObjectPool.createPool("Base", basic_game_object, 3); 
 

@@ -1,12 +1,12 @@
-gjs.setModulePath('layering_bundle');
+gjs.setModulePath('layering-bundle');
 
 define(function(require) {
 	var main = function() {
 		gjs.game.on("init", this, function() {
 			//This pool setup bundle creates all the things this example will be using
-			require('layering_bundle').create();
+			require('layering-bundle').create();
 
-			//Here each game_object is added to a different layer
+			//Here each game-object is added to a different layer
 			gjs.addToLayer('Front', 'Base_3');
 			gjs.addToLayer('Middle', 'Base_2');
 			gjs.addToLayer('Back', 'Base_1');
@@ -61,7 +61,7 @@ define(function(require) {
 				gjs.layers.all('remove');
 			});
 
-			//Since layers are containers which in turn are game_objects, 
+			//Since layers are containers which in turn are game-objects, 
 			//theoretically you should be able to do fancy things with them to achieve
 			//some cool effects.		
 
