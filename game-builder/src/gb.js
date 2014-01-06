@@ -37,12 +37,15 @@ define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game_object_pool', 
 			 * A reference to the main canvas object in index.html. 
 			 */
 			canvas: document.getElementById('game'),
+			/**
+			 * --------------------------------
+			 */
 
 			/**
-			 * <p style='color:#AD071D'><strong>addToLayer<strong> wraps all the steps needed to add a [game_object](@@game_object)
+			 * <p style='color:#AD071D'><strong>addToLayer<strong> wraps all the steps needed to add a <a href=@@game_object>game_object</a>
 			 * into a layer. </p>
 			 * @param {String} layerName Id of the layer to add the [game_object](@@game_object) to. View [layers](@@layers), for more details.
-			 * @param {String} goId      Id of [game_object](@@game_object) to add. View [game_object_pool](@@game_object_pool), for more details
+			 * @param {String} goId      Id of [game_object](@@game_object) to add. View [game_object_pool](@@game_object_pool), for more details.
 			 */
 			addToLayer: function(layerName, goId) {
 				var go = this.layers.get(layerName).add(this.assembler.get(goId));
