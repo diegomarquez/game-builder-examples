@@ -4,7 +4,7 @@
  *
  * Inherits from: [class](@@class)
  * 
- * Dependends of: [util](@@util)
+ * Depends of: [util](@@util)
  *
  * A [requireJS](http://requirejs.org/) module.
  * 
