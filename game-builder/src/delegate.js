@@ -3,6 +3,7 @@
  * ### By [Diego Enrique Marquez](http://treintipollo.com/)
  *
  * Inherits from: [class](@@class)
+ * 
  * Dependends of: [util](@@util)
  *
  * A [requireJS](http://requirejs.org/) module.
