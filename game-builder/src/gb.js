@@ -5,13 +5,13 @@
  * Inherits from: ---
  *
  * Depends of: 
- * *[game](@@game@@) 
- * *[root](@@root@@) 
- * *[layers](@@layers@@) 
- * *[assembler](@@assembler@@) 
- * *[reclaimer](@@reclaimer@@) 
- * *[game-object-pool](@@game-object-pool@@)
- * *[component-pool](@@component-pool@@) 	
+	 - [game](@@game@@) 
+	 - [root](@@root@@) 
+	 - [layers](@@layers@@) 
+	 - [assembler](@@assembler@@) 
+	 - [reclaimer](@@reclaimer@@) 
+	 - [game-object-pool](@@game-object-pool@@)
+	 - [component-pool](@@component-pool@@) 	
  *
  * A [requireJS](http://requirejs.org/) module.
  * 
