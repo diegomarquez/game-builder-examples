@@ -1,23 +1,23 @@
-/*
-# gb.js
-### By [Diego Enrique Marquez](http://www.treintipollo.com)
-
-Inherits from: ---
-
-Depends of: 
-- [game](@@game@@) 
-- [root](@@root@@) 
-- [layers](@@layers@@) 
-- [assembler](@@assembler@@) 
-- [reclaimer](@@reclaimer@@) 
-- [game-object-pool](@@game-object-pool@@)
-- [component-pool](@@component-pool@@) 	
-
-A [requireJS](http://requirejs.org/) module.
-
-This module acts as a hub for the main modules of [Game-Builder](http://diegomarquez.github.io/game-builder). So instead of loading them individualy, 
-you just lod this one and use the references that it provides.
-*/
+/**
+ * # gb.js
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ *
+ * Inherits from: ---
+ *
+ * Depends of: 
+ * [game](@@game@@) 
+ * [root](@@root@@) 
+ * [layers](@@layers@@) 
+ * [assembler](@@assembler@@) 
+ * [reclaimer](@@reclaimer@@) 
+ * [game-object-pool](@@game-object-pool@@) 
+ * [component-pool](@@component-pool@@) 	
+ *
+ * A [requireJS](http://requirejs.org/) module.
+ * 
+ * This module acts as a hub for the main modules of [Game-Builder](http://diegomarquez.github.io/game-builder). So instead of loading them individualy, 
+ * you just lod this one and use the references that it provides.
+ */
 
 /**
  * A bunch of shortcuts
