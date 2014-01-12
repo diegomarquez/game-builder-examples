@@ -69,6 +69,10 @@ module.exports = function(grunt) {
             'cd ..'
           ].join('&&');
         }
+      },
+
+      options: {
+        stdout: true
       }    
     } 
   });
