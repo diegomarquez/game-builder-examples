@@ -39,7 +39,7 @@ define(function(require){
 	var box_renderer = require('box-renderer');
 
 	// This is the main initialization function
-	game.on('init', this, function() {
+	game.on(game.CREATE, this, function() {
 		console.log('Welcome to Game-Builder!');
 		// Create a pool of [box-renderer](@@box-renderer@@) objects and give it the id **Box_Renderer**.
 		// This is later used to create configurations for this type of objects.
@@ -84,17 +84,17 @@ define(function(require){
 	});
 
 	// This is called when the canvas looses focus
-	game.on('blur', this, function() {
+	game.on(game.BLUR, this, function() {
 		console.log('game-object-creation has lost focus');
 	});
 
 	// This is called when the canvas regains focus
-	game.on('focus', this, function() {
+	game.on(game.FOCUS, this, function() {
 		console.log('game-object-creation has regained focus');
 	});
 
 	// This is the main update loop
-	game.on('update', this, function() {
+	game.on(game.UPDATE, this, function() {
 		// Updates ALL the things.
 		root.update(game.delta);
 		// Draws ALL the things.
