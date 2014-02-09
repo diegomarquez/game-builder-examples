@@ -1,7 +1,8 @@
-// # game-object-creation's main entry point 
-
 /**
- * ### Modules at work in this example
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ *
+ * Depends of:
  * [game](@@game@@),
  * [gb](@@gb@@),
  * [root](@@root@@),
@@ -15,6 +16,9 @@
  * [box-renderer](@@box-renderer@@)
  */
 
+/**
+ * --------------------------------
+ */
 define(function(require){
 	var gb = require('gb');
 	

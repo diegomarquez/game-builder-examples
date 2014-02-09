@@ -1,17 +1,21 @@
-// # fixed-state-machine's main entry point 
-
 /**
- * ### Modules at work in this example
- * [gb](@@gb@@)
- * [game](@@game@@)
- * [root](@@root@@)
- * [state-machine](@@state-machine@@)
- * [keyboard](@@keyboard@@)
- * [state-1](@@state-1@@)
- * [state-2](@@state-2@@)
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ *
+ * Depends of:
+ * [gb](@@gb@@),
+ * [game](@@game@@),
+ * [root](@@root@@),
+ * [state-machine](@@state-machine@@),
+ * [keyboard](@@keyboard@@),
+ * [state-1](@@state-1@@),
+ * [state-2](@@state-2@@),
  * [state-3](@@state-3@@)
  */
 
+/**
+ * --------------------------------
+ */
 define(function(require){
 	var gb = require('gb');
 	
