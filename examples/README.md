@@ -9,10 +9,7 @@ you might want to check a previous one, for an explanation.
 Be sure to check the links at the top of each example,
 for some documentation on all the modules involved.
 
-============================
-============================
-### Suggested order: 
-============================
+Suggested order: 
 ============================
 
 1. [Empty][empty]	
@@ -25,10 +22,7 @@ for some documentation on all the modules involved.
 9. [Keyboard Input][keyboard]
 10. [Reclaimer][reclaimer]
 
-============================
-============================
-### In no specific order:
-============================
+In no specific order:
 ============================
 
 - [Sound][sound]
@@ -37,16 +31,10 @@ for some documentation on all the modules involved.
 - [Fixed state machine][fixed_state_machine]
 - [Extensions][extensions]
 
-============================
-============================
-### Overview on default files
-============================
+Overview on default files
 ============================
 
-============================
-============================
-### Overview on available Grunt tasks
-============================
+Overview on available Grunt tasks
 ============================
 
 [game-builder]: http://diegomarquez.github.io/game-builder
