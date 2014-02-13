@@ -6,10 +6,6 @@
   "additionalLibPaths": "",
   "framework": "../../game-builder",
   "lib": "../../lib",
-  "size": {
-    "width": "400",
-    "height": "300"
-  },
   "frameworkTag": "latest",
   "dependencies": {
     "grunt": "~0.4.2",
@@ -17,7 +13,6 @@
     "grunt-open": "~0.2.2",
     "bower": "~1.2.8",
     "grunt-bower-requirejs": "~0.8.4",
-    "path": "~0.4.9",
-    "lodash": "~2.4.1"
+    "path": "~0.4.9"
   }
 }

@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "dependencies": {
     "requirejs": "2.1.8",
-    "requirejs-domready": "*",
-    "lodash": "~2.4.1"
+    "requirejs-domready": "*"
   },
   "ignore": [
     "**/.*",
