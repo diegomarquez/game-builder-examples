@@ -34,9 +34,9 @@ module.exports = function(grunt) {
     commitMessage: grunt.option('message'),
 
     hub: {
-      refreshAll: {
+      buildAll: {
         src: files,
-        tasks: ['refresh'],
+        tasks: ['build'],
 
         options: {
           concurrent: files.length
