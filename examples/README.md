@@ -31,12 +31,6 @@ In no specific order:
 - [Fixed state machine][fixed_state_machine]
 - [Extensions][extensions]
 
-Overview on default files
-============================
-
-Overview on available Grunt tasks
-============================
-
 [game-builder]: http://diegomarquez.github.io/game-builder
 [empty]: ./empty/main.html
 [game_object_creation]: ./game_object_creation/main.html
