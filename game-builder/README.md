@@ -11,35 +11,37 @@ For better results it is better to use it in conjuction with [generator-game-bui
 -----------------------------------
 
 ###### TODO List:
-        
+    
+- Update Gruntfile in all examples
+- Make Seed project for a quick start
+
 - New Website sections
-    - Getting started. BIG BLUE BUTTON in Jumbotron. 
-        - Instructions on what you need to download. And how to use the tools
-        - Overview of default files and folders
-            - .bowerrc
-            - .gitignore
-            - bower.json
-            - config.js
-            - Gruntfile.js
-            - index.html
-            - package.json
-        - Overview of available grunt tasks
-    - Links to running examples
+    - Overview of default files and folders (LINK TO SEED PROJECT)
+    - Overview of available grunt tasks
+    - howto.html should finish with the grunt overview
+    - additionalTools.html (Generator and Sublime Plugin)
+    - Main. Links to running examples
         - Should have link to github, to view the code
         - Should have link to corresponding doc
 
+- Update howto.html with any relevant changes introduced up until this point
+
+- Build and deploy documentation
+    - Get rid of "_" chars, because they mess with markdown
+    - Don't forget about fullstops at the end of comments.
+
 - Make Sublime plugin to generate files from templates
     - Make an empty menu structure.
-    - Hook yeoman generators into each option
-    - Hook Grunt tasks
+    - Hook yeoman generators into each option.
+    - Hook Grunt tasks.
 
 - Think about how to handle paths to images/sound
-    - Yeoman subgenerator to create a file with name/paths pairs.
+    - Grunt task to create a file with name/paths pairs.
     - Pick up urls from another file to create mappings for remote resources.
         - This could be loaded as a text file when needed, or maybe a module. In any case, should be lightweight.
         - The idea is to have something else other than raw strings in the code.
     - Refactor sound-player so it loads things and plays them as they become available.
-    - Add functionality to use a manipulate an individual sound channel to the sound-player
+    - Add functionality to manipulate an individual sound channel to the sound-player
 
 - Tag latest version of game-builder
 
@@ -72,9 +74,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
         - Test delegate.js destroy method properly
     - Links to explanations of known errors, like requireJS
     - Rename delegate.js to broadcaster.js
-    - Examples docs need another review
-        - Get rid of "_" chars, because they mess with markdown
-        - Don't forget about fullstops at the end of comments.
 
 #### [This is the prototype game][tirador] which spurred the creation of this project.
 
