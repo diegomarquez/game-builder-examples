@@ -1,15 +1,15 @@
 var path = require('path');
 
 module.exports = function(grunt) {
-	var p = grunt.file.readJSON('package.json');
-
-  	// Making sure that this path has the correct separator. Just in case.
-  	p.additionalSrcPaths = p.framework.split(/[/|\\]/).join(path.sep);
-  	p.additionalLibPaths = p.framework.split(/[/|\\]/).join(path.sep);
-  	p.framework 		 = p.framework.split(/[/|\\]/).join(path.sep);
-  	p.lib 				 = p.framework.split(/[/|\\]/).join(path.sep);
-
     grunt.registerTask('create-config', function() {
+		var p = grunt.file.readJSON('package.json');
+
+	  	// Making sure that this path has the correct separator. Just in case.
+	  	p.additionalSrcPaths = p.additionalSrcPaths ? p.additionalSrcPaths.split(/[/|\\]/).join(path.sep) : "";
+	  	p.additionalLibPaths = p.additionalLibPaths ? p.additionalLibPaths.split(/[/|\\]/).join(path.sep) : "";
+	  	p.framework 		 = p.framework.split(/[/|\\]/).join(path.sep);
+	  	p.lib 				 = p.lib.split(/[/|\\]/).join(path.sep);
+
 	    var paths = [];
 
 	    // Add all source paths

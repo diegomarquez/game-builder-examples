@@ -12,8 +12,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
     
-- Update Gruntfile in all examples
-- Make Seed project for a quick start
+- Make Seed project for a quick start (Make it with generator to see how it works)
 
 - New Website sections
     - Overview of default files and folders (LINK TO SEED PROJECT)
