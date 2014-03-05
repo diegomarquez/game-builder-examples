@@ -12,13 +12,8 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
     
-- Make Seed project for a quick start (Make it with generator to see how it works)
-
 - New Website sections
-    - Overview of default files and folders (LINK TO SEED PROJECT)
-    - Overview of available grunt tasks
-    - howto.html should finish with the grunt overview
-    - additionalTools.html (Generator and Sublime Plugin)
+    - additionalTools.html (Generator)
     - Main. Links to running examples
         - Should have link to github, to view the code
         - Should have link to corresponding doc
