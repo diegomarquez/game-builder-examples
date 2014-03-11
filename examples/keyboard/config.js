@@ -39,6 +39,7 @@ require.config({
     layers: "../../game-builder/src/hierarchy/layers",
     root: "../../game-builder/src/hierarchy/root",
     keyboard: "../../game-builder/src/input/keyboard",
+    "json-cache": "../../game-builder/src/json-cache",
     "matrix-3x3": "../../game-builder/src/math/matrix-3x3",
     "vector-2D": "../../game-builder/src/math/vector-2D",
     assembler: "../../game-builder/src/pools/assembler",

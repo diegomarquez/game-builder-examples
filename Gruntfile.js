@@ -16,6 +16,23 @@ module.exports = function(grunt) {
     'examples/timers/Gruntfile.js'
   ];
 
+  var folders = [
+    'colliders', 
+    'empty',
+    'extensions',
+    'fixed_state_machine',
+    'game_object_creation',
+    'game_object_nesting',
+    'keyboard',
+    'layering',
+    'logic_components',
+    'loose_state_machine',
+    'reclaimer',
+    'renderers',
+    'sound',
+    'timers'
+  ];
+
   var checkValidCommitMessage = function() {
     if(!grunt.option('message')) {
       grunt.fail.fatal('Missing commit message');  
@@ -36,11 +53,16 @@ module.exports = function(grunt) {
     hub: {
       buildAll: {
         src: files,
-        tasks: ['build'],
+        tasks: ['build']
+      },
 
-        options: {
-          concurrent: files.length
-        }
+      generateAll: {
+        src: files,
+        tasks: ['config', 'asset-map']
+      },
+
+      options: {
+        concurrent: files.length
       }
     },
 
@@ -71,6 +93,16 @@ module.exports = function(grunt) {
         }
       },
 
+      npmInstall: {
+        command: function(path) {
+          return [ 
+            'cd ' + path,
+            'npm install',
+            'cd ..'
+          ].join('&&');
+        }
+      },
+
       options: {
         stdout: true
       }    
@@ -80,7 +112,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-hub');
   grunt.loadNpmTasks('grunt-shell');
 
-  grunt.registerTask('default', ['hub:refreshAll']);
+  grunt.registerTask('npmAll', function() {
+    for(var i=0; i<folders.length; i++) {
+      grunt.task.run('shell:npmInstall:'+folders[i])
+    }
+  });
+
+  grunt.registerTask('default', ['npmAll', 'hub:buildAll']);
+  grunt.registerTask('generate', ['hub:generateAll']);
 
   grunt.registerTask('push', ['shell:pushExamples', 'shell:pushGameBuilder']);
 };

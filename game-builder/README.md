@@ -12,24 +12,40 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Think about how to handle paths to images/sound
-    - Grunt task to create a file with name/paths pairs.
-    - Pick up urls from another file to create mappings for remote resources.
-        - This could be loaded as a text file when needed, or maybe a module. In any case, should be lightweight.
-        - The idea is to have something else other than raw strings in the code.
-    - Refactor sound-player so it loads things and plays them as they become available.
-    - Add functionality to manipulate an individual sound channel to the sound-player
+- Asset Paths
+    - Update howto.html with new grunt task and related files
 
-- Tag latest version of game-builder
+- Sound
+    - Refactor sound-player so it loads things and plays them as they become available.
+        - _index.html
+        - add remote-assets.json
+        - package.json
+
+- Sound
+    - asset-map
+    - sound-player lazy loading
+    - Add functionality to manipulate an individual sound channel to the sound-player
+    - Update Sound example
+
+- Timers
+    - Something to get the current milliseconds left in a timer
+    - Update Timer example
+
+- State Machines
+    - asset-map
+
+- Get a cool logo for Game-Builder
 
 - Extensions 2
     - TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )
     - Keyboard extension, block keyboard keys when pausing the game ( No Demo )
 
+- Tag latest version of game-builder
+
+- Deploy gh-pages
+
 -Examples v4
     - Use HTML to add some on screen explanation of what is going on
-    - Or anything to make them look prettier.
-    - Some CSS to decorate the sorroundings? Maybe a Frame for the canvas.
 
 - Spike Performance Boost
     - Canvas caching
