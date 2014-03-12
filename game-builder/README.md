@@ -12,28 +12,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Asset Paths
-    - Update howto.html with new grunt task and related files
-
-- Sound
-    - Refactor sound-player so it loads things and plays them as they become available.
-        - _index.html
-        - add remote-assets.json
-        - package.json
-
-- Sound
-    - asset-map
-    - sound-player lazy loading
-    - Add functionality to manipulate an individual sound channel to the sound-player
-    - Update Sound example
-
-- Timers
-    - Something to get the current milliseconds left in a timer
-    - Update Timer example
-
-- State Machines
-    - asset-map
-
 - Get a cool logo for Game-Builder
 
 - Extensions 2
@@ -63,10 +41,11 @@ For better results it is better to use it in conjuction with [generator-game-bui
 - Do a simple game and get this over with for fucks sake!
 
 - Annoying tasks
+    - Rename delegate.js to broadcaster.js
     - Test garbage collection
         - Test delegate.js destroy method properly
     - Links to explanations of known errors, like requireJS
-    - Rename delegate.js to broadcaster.js
+        - Single page in the website
 
 ### [This is the prototype game][tirador] which spurred the creation of this project.
 
