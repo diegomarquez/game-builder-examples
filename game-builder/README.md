@@ -12,7 +12,9 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Get a cool logo for Game-Builder
+- Timers
+    - Add functionality to example
+    - Show it in second version of the timers example
 
 - Extensions 2
     - TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )
@@ -49,7 +51,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ### [This is the prototype game][tirador] which spurred the creation of this project.
 
-[game]: http://f.cl.ly/items/3N420I093v3b03051W39/game.png
+[game]: http://diegomarquez.github.io/game-builder/Galaga.png
 [tirador]: http://www.treintipollo.com/tirador/index.html
 [generator]: https://github.com/diegomarquez/generator-game-builder
 [yeoman]: http://yeoman.io/

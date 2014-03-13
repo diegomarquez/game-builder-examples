@@ -36,6 +36,12 @@ define(function(require){
 		sound_player.add('Sound_3', assetMap['SHEEP.MP3']);
 		sound_player.add('Sound_4', assetMap['ELEVATOR.MP3']);
 
+		sound_player.load('Sound_5', assetMap['CROW.WAV']);
+
+		keyboard.onKeyDown(keyboard.C, this, function() {
+			sound_player.playSingle('Sound_5');
+		});
+
 		// Call loadAll to load all the resources, the callback gets executed once everything is loaded.
 		
 		// Note: This method can not be called again until
