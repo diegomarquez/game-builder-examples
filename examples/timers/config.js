@@ -31,6 +31,7 @@ require.config({
     extension: "../../game-builder/src/game_canvas/extensions/extension",
     pause: "../../game-builder/src/game_canvas/extensions/pause",
     resume: "../../game-builder/src/game_canvas/extensions/resume",
+    "timers-control": "../../game-builder/src/game_canvas/extensions/timers-control",
     game: "../../game-builder/src/game_canvas/game",
     gb: "../../game-builder/src/gb",
     "game-object-container": "../../game-builder/src/hierarchy/game-object-container",

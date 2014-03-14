@@ -22,6 +22,8 @@ define(function(require){
 	var timer_factory = require('timer-factory');
 	var keyboard = require('keyboard');
 	
+	game.add_extension(require("timers-control"));
+
 	// This is the main initialization function
 	game.on(game.CREATE, this, function() {
 		console.log("Welcome to Game-Builder!");
@@ -45,6 +47,7 @@ define(function(require){
 			// Configuring the timers
 			this.my_timer_1.configure({ delay: 3000 });
 			this.my_timer_2.configure({ delay: 2000, repeatCount:2, removeOnComplete:false});
+			this.my_timer_3.configure({ delay: 10000 });
 		});
 
 		// Bring up your javascript console to view when stuff gets printed.
