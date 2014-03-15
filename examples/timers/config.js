@@ -29,6 +29,7 @@ require.config({
     "aspect-ratio-resize": "../../game-builder/src/game_canvas/extensions/aspect-ratio-resize",
     "basic-layer-setup": "../../game-builder/src/game_canvas/extensions/basic-layer-setup",
     extension: "../../game-builder/src/game_canvas/extensions/extension",
+    "keyboard-lock": "../../game-builder/src/game_canvas/extensions/keyboard-lock",
     pause: "../../game-builder/src/game_canvas/extensions/pause",
     resume: "../../game-builder/src/game_canvas/extensions/resume",
     "timers-control": "../../game-builder/src/game_canvas/extensions/timers-control",
