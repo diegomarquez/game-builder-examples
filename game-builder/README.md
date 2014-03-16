@@ -14,7 +14,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - Examples v5 
     - In-demo feedback
-        - Sound
         - Fixed State Machine
         - Loose State Machine
         - Put relevant text in all examples that need it
