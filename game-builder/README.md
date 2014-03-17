@@ -12,12 +12,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Examples v5 
-    - In-demo feedback
-        - Reclaimer - Controls
-
-- Replace w3schools.com links :P
-
 - Next and previous links between demos
     - Send the correct values through the query string in index.html
 
