@@ -14,14 +14,16 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - Examples v5 
     - In-demo feedback
-        - Fixed State Machine
-        - Loose State Machine
-        - Put relevant text in all examples that need it
-            - Review all examples
+        - Reclaimer - Controls
 
 - Replace w3schools.com links :P
 
+- Next and previous links between demos
+    - Send the correct values through the query string in index.html
+
 - Extension to pause all sound.
+
+- Tag latest version of game-builder
 
 - Deploy gh-pages
 
