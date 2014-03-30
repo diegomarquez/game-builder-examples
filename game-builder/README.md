@@ -12,18 +12,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Extension to pause all sound.
-    - Test extension in sound example.
-
-- Tag latest version of game-builder
-
-- Deploy gh-pages
-
-- Spike Performance Boost
-    - Canvas caching
-        * Cache static drawings (Drawing Renderer, NEW)
-        * Cache Images (Bitmap renderer)
-        * https://github.com/jakesgordon/bin-packing/blob/master/js/packer.js       
+- Shared Renderers, mainly for partlicles
 
 - Tag latest version of game-builder
 
@@ -32,8 +21,14 @@ For better results it is better to use it in conjuction with [generator-game-bui
 - Tag latest version of game-builder
 
 - Text
+    - Caching
 
 - Tag latest version of game-builder
+
+- New Stuff on generator
+    - Text
+    - State Machine
+    - Renderers
 
 - Annoying tasks
     - sound-player.js
@@ -51,10 +46,14 @@ For better results it is better to use it in conjuction with [generator-game-bui
         - Active Objects
         - Pooled Sound Channels
         - Active Sound Channels
+        - Cached Images
+        - Cached Paths
 
 - Figure out how to use r.js
 
 - Do a simple game and get this over with for fucks sake!
+
+- Animation System
 
 ### [This is the prototype game][tirador] which spurred the creation of this project.
 

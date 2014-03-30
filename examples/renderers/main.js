@@ -31,6 +31,7 @@ define(function(require){
 		gb.addToLayer('Middle', 'Base_1');
 		gb.addToLayer('Middle', 'Base_2');
 		gb.addToLayer('Middle', 'Base_3');
+		gb.addToLayer('Middle', 'Base_4');
 	});
 
 	// This is called when the canvas looses focus

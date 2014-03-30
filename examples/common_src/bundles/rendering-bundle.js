@@ -22,15 +22,28 @@
 define(function(require) {
 	var basic_game_object = require('basic-game-object');
 	var bitmap_renderer = require('bitmap-renderer');
+	var path_renderer = require('path-renderer');
 
 	var RenderingBundle = require('bundle').extend({
 		create: function() {
 			this.componentPool.createPool("Bitmap_Renderer", bitmap_renderer);
+			this.componentPool.createPool("Path_Renderer", path_renderer);
 
 			this.componentPool.createConfiguration("Pear_1", 'Bitmap_Renderer').args({ offset:'center', path: this.assetMap['80343865.JPG']});
 			this.componentPool.createConfiguration("Pear_2", 'Bitmap_Renderer').args({ path: this.assetMap['80343865.JPG']});
+			
+			this.componentPool.createConfiguration("Path_1", 'Path_Renderer').args({ 
+				name: 'Path',
+				pathWidth: 10,
+				pathHeight: 10,
+				offset:'center',
+				drawPath: function(context) {
+					context.fillStyle = "#FF0000";
+					context.fillRect(0, 0, 10, 10);
+				}
+			});
 
-			this.gameObjectPool.createPool("Base", basic_game_object, 3); 
+			this.gameObjectPool.createPool("Base", basic_game_object, 4); 
 
 			this.gameObjectPool.createConfiguration("Base_1", "Base")
 				.args({x: this.canvas.width/2 - 100, y: this.canvas.height/2, rotation_speed: -2, scaleX: 2})
@@ -45,6 +58,10 @@ define(function(require) {
 				// BONUS: you can override the configuration of a component/renderer or just add additional parameters.
 				// The object after the ID will be merged with the one set through createConfiguration
 				.setRenderer('Pear_1', { width: 20, height: 20 });
+
+			this.gameObjectPool.createConfiguration("Base_4", "Base")
+				.args({x: this.canvas.width/2, y: this.canvas.height/2, rotation_speed: 3})
+				.setRenderer('Path_1');
 		}
 	});
 
