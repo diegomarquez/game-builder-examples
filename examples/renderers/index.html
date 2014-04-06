@@ -31,13 +31,12 @@
 				// Cache the asset map loaded from asset-map.js . Later it will be available through the json-cache module, 
 				// using the 'asset-map' id.
 				jsonCache.cache("asset-map", assetMap);
-
+	
 				// Start loading configured fonts
-				fontLoader.start(webfonts.version, webfonts.data, function() {
+				fontLoader.start(webfonts, function() {
 					// Now all fonts are loaded, and FOUT has been avoided.
-
-					// Up until now it has been boilerplate, from now on it's all magic. That is, your magic.
-					// When the main module is loaded, it's definition function is executed and things start getting crazy.
+					
+					// Create main module
 					require(["main"], function(main){});
 				});
 			});
