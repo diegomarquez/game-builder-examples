@@ -13,10 +13,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 ###### TODO List:
 
 - Annoying tasks
-    - Rename delegate.js to broadcaster.js (think about a proper name)
-    - Links to explanations of known errors, like requireJS
-        - Normalize Error format. Maybe a little module to do so, it should recieve an object type and a message and with that build an error message
-        - Single page in the website
     - Consolidate file generation into single file with a single task
         - asset-map.js
         - config.js
