@@ -12,7 +12,23 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
+- Mistake in font-data.js
+    - seed 
+    - generator
+- Add src and assets folder to seed.
+- Typo in the bundle generated file. 'This' should be 'These'
+
+- Try out all examples
+- fix error printer anchor generation
+- Assembler, error when trying to use Game Object without a renderer
+- Wrong module names in generator templates
+- Missing arguments in generator templates
+- Generator Templates to extend path renderer and bitmap-renderer
+
 - Annoying tasks
+    - Generate Errors page with mastache template, include all data in a JSON file.
+    - Generate links to corresponding documentation (titles and red text) while processing the template.
+
     - Consolidate file generation into single file with a single task
         - asset-map.js
         - config.js
