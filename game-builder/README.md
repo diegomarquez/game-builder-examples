@@ -12,15 +12,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- website error anchors
-
-- Generator Templates to extend path renderer and bitmap-renderer
-- Make generator more flexible, be hable to send parent class and dependencies on creation
-
 - Remove grunt and bower from dependencies
-    - Examples
-    - Seed
-    - Generator
     - Add installation instructions in website
 
 - Try out all examples
@@ -33,6 +25,9 @@ For better results it is better to use it in conjuction with [generator-game-bui
         - asset-map.js
         - config.js
         - font-data.js
+    
+    - Generator Templates to extend path renderer and bitmap-renderer
+    - Make generators more flexible, be hable to send parent class and dependencies on creation
 
 - Tag
 - Deploy Website
