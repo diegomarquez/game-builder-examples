@@ -12,25 +12,11 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Remove grunt and bower from dependencies
-    - Add installation instructions in website
-
 - Try out all examples
-
-- Annoying tasks
-    - Generate Errors page with mastache template, include all data in a JSON file.
-    - Generate links to corresponding documentation (titles and red text) while processing the template.
-
-    - Consolidate file generation into single file with a single task
-        - asset-map.js
-        - config.js
-        - font-data.js
-    
-    - Generator Templates to extend path renderer and bitmap-renderer
-    - Make generators more flexible, be hable to send parent class and dependencies on creation
 
 - Tag
 - Deploy Website
+    - Generate docs
 
 - Examples v6 
     - Add feedback about the internals of each example
