@@ -29,6 +29,7 @@ require.config({
     "path-renderer": "../../game-builder/src/components/rendering/path-renderer",
     renderer: "../../game-builder/src/components/rendering/renderer",
     "text-renderer": "../../game-builder/src/components/rendering/text-renderer",
+    "activity-display": "../../game-builder/src/debug/activity-display",
     "error-printer": "../../game-builder/src/debug/error-printer",
     "game-object-debug-draw": "../../game-builder/src/debug/game-object-debug-draw",
     delegate: "../../game-builder/src/delegate",

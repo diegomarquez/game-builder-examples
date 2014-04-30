@@ -18,8 +18,12 @@ define(function(require){
 	var game = gb.game;
 	var root = gb.root;
 
+	var display = require('activity-display');
+
 	// This is the main initialization function
 	game.on(game.CREATE, this, function() {
+		display.show();
+		
 		console.log("Welcome to Game-Builder!");
 	});
 
