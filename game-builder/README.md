@@ -12,20 +12,10 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Examples v6 
-    - Activity Display 
-        - Module to add that information to all examples
-            - Add to all examples
-
-- Tag
-- Deploy Website
-
 - Fix CSS on examples, they are not alligned properly when putting them in an iFrame
     - Checkout renderers examples
 
 - Agregar una propiedad a los canales para ver cuando terminaron de cargar, porque readyState es basura.
-
-- Review how each examples looks with the activity display
 
 - Add missing event information of caches, sound-player and timer-factory to their respective docs
 

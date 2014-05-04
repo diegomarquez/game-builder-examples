@@ -68,11 +68,11 @@ define(function(require) {
 	};
 
 	var positionInfoButton = function (element) {
-		var x = gb.canvas.clientLeft + gb.canvas.clientWidth;
-		var y = (gb.canvas.clientTop + gb.canvas.clientHeight) - element.clientHeight;
+		var x = "";
+		var y = gb.canvas.clientTop + gb.canvas.clientHeight - element.clientHeight;
 
 		displayElement.style.top = y + 'px';
-		displayElement.style.left = 0 + 'px';
+		displayElement.style.left = x + 'px';
 	};
 
 	var updatePool = function(name, pool, displayId) {
@@ -82,7 +82,7 @@ define(function(require) {
 			var text = name + ' => ';
 			var numbers = [pool.getTotalActiveObjectsCount(), pool.getTotalPooledObjectsCount()];
 
-			display.innerText = text + numbers.join('/');
+			display.innerText = text + numbers.join(' / ');
 		}
 	};
 
@@ -101,7 +101,7 @@ define(function(require) {
 		var display = document.getElementById('soundPlayerDisplay');
 
 		var text = 'Sound Player => ';
-		var numbers = [soundPlayer.getPooledCount(), soundPlayer.getActiveCount(), soundPlayer.getAssignedCount(), soundPlayer.getPooledCount() + soundPlayer.getActiveCount()];
+		var numbers = [soundPlayer.getPooledCount(), soundPlayer.getActiveCount(), soundPlayer.getAssignedCount(), soundPlayer.getPooledCount() + soundPlayer.getActiveCount() + soundPlayer.getAssignedCount()];
 
 		display.innerText = text + numbers.join('/');
 	};
@@ -122,7 +122,7 @@ define(function(require) {
 	displays.push(getDisplay(pathCache, updateCache('Path Cache', pathCache, 'pathCacheDisplay'), 'cache', ['CACHE', 'CLEAR', 'CLEAR_ALL']));
 	displays.push(getDisplay(textCache, updateCache('Text Cache', textCache, 'textCacheDisplay'), 'cache', ['CACHE', 'CLEAR', 'CLEAR_ALL']));
 	displays.push(getDisplay(soundPlayer, updateSoundDisplay, 'play_single', ['ON_LOAD_ALL_COMPLETE', 'ON_LOAD_COMPLETE', 'CHANNELS_ASSIGN', 'CHANNELS_REVOKE', 'SINGLE_COMPLETE', 'PLAY_SINGLE', 'PLAY_LOOP', 'PAUSE', 'RESUME', 'STOP']));
-	displays.push(getDisplay(timerFactory, updateTimerDisplay, 'create', ['CREATE', 'REMOVE']));
+	displays.push(getDisplay(timerFactory, updateTimerDisplay, 'create', ['CREATE', 'REMOVE', 'COMPLETE', 'REPEATE', 'START', 'PAUSE', 'RESUME', 'RESET', 'STOP']));
 
 	var ActivityDisplay = require('extension').extend({
 		init: function() {},
@@ -138,6 +138,7 @@ define(function(require) {
 
 			var infoButton = document.createElement('button');
 			infoButton.innerText = 'Show Info';
+
 			infoButton.addEventListener('click', function() {
 				if (this.innerText == 'Show Info') {
 					this.innerText = 'Hide Info';
@@ -163,7 +164,7 @@ define(function(require) {
 			displayElement.appendChild(infoContainer);
 			
 			infoContainer.style.display = 'none';
-			displayElement.style.position = 'absolute';
+			displayElement.style.position = 'fixed';
 
 			gb.game.mainContainer.appendChild(displayElement);
 		
