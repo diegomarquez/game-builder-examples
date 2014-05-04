@@ -13,6 +13,7 @@ require.config({
     "state-1": "../common_src/state-1",
     "state-2": "../common_src/state-2",
     "state-3": "../common_src/state-3",
+    cache: "../../game-builder/src/cache/cache",
     "image-cache": "../../game-builder/src/cache/image-cache",
     "json-cache": "../../game-builder/src/cache/json-cache",
     "path-cache": "../../game-builder/src/cache/path-cache",

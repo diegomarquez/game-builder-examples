@@ -18,12 +18,10 @@ define(function(require){
 	var game = gb.game;
 	var root = gb.root;
 
-	var display = require('activity-display');
+	game.add_extension(require("activity-display"));
 
 	// This is the main initialization function
-	game.on(game.CREATE, this, function() {
-		display.show();
-		
+	game.on(game.CREATE, this, function() {	
 		console.log("Welcome to Game-Builder!");
 	});
 
