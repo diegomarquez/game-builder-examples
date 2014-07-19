@@ -38,9 +38,9 @@ define(function(require){
 	// This is the main update loop
 	game.on(game.UPDATE, this, function() {
 		// Updates ALL the things.
-		root.update(game.delta);
+		// root.update(game.delta);
 		// Draws ALL the things.
-		root.transformAndDraw(game.context);
+		// root.transformAndDraw(game.context);
 	});
 
 	// This is the main setup that kicks off the whole thing

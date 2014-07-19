@@ -9,8 +9,8 @@
  * [game-object-pool](@@game-object-pool@@),
  * [component-pool](@@component-pool@@),
  * [assembler](@@assembler@@),
- * [layers](@@layers@@)
- * [extension](@@extension@@),
+ * [groups](@@groups@@)
+ * [viewports](@@viewports@@)
  * [basic-layer-setup](@@basic-layer-setup@@),
  * [basic-game-object](@@basic-game-object@@),
  * [box-renderer](@@box-renderer@@)
@@ -28,14 +28,15 @@ define(function(require){
 	var assembler = gb.assembler;
 	var gameObjectPool = gb.goPool;
 	var componentPool = gb.coPool;
-	var layers = gb.layers;
+	var groups = gb.groups;
+	var viewports = gb.viewports;
 	var canvas = gb.canvas;
 
-	// This piece of code takes care of creating a basic layer structure.
-	// it adds 4 layers to work with, 'Back', 'Middle', 'Front' and 'Text'.
-	// Each layer is on top of the previous one.
-	// If your project needs more layers, you can replace this extension with one of your own.
-	game.add_extension(require('basic-layer-setup'));
+	// This piece of code takes care of creating a basic display structure.
+	// it adds 3 [groups](@@group@@) to work with, 'First', 'Second' and 'Third'
+	// This groups control the updating order
+	// The [viewports](@@viewport@@) are set up here aswell, in this case there is a single one called 'Main'
+	game.add_extension(require('basic-display-setup'));
 	game.add_extension(require("activity-display"));
 	
 	// Getting the prototype for [basic-game-object](@@basic-game-object@@)
@@ -61,8 +62,8 @@ define(function(require){
 				offsetY: -50,
 				width: 100,
 				height: 100,
-			  });			
-		
+			  });
+
 		// Create a [basic-game-object](@@basic-game-object@@) pool and give it the id **Base**.
 		// The last arguments specifies the amount of objects to create in the pool. In this case 1.
 		gameObjectPool.createPool('Base', basic_game_object, 1);
@@ -79,10 +80,12 @@ define(function(require){
 		// together the [game-object](@@game-object@@) with id **Base_1**. 
 		// In the process it applies all the configurations we just set.
 		var go = assembler.get('Base_1');
-		// Use the [layers](@@layers@@) module to 
-		// add the [game-object](@@game-object@@) to a rendering [layer](@@layer@@)
-		layers.get('Middle').add(go);
-
+		// Use the [groups](@@groups@@) module to 
+		// add the [game-object](@@game-object@@) an updating [group](@@group@@)
+		groups.get('First').add(go);
+		// Use the [viewports](@@viewports@@) module to 
+		// add the [game-object](@@game-object@@) a rendering [layer](@@layer@@)
+		viewports.get('Main').addGameObject('Back', go);
 		// Start the [game-object](@@game-object@@). 
 		// If this is not called, it is not updated nor drawn.
 		go.start();
@@ -103,7 +106,7 @@ define(function(require){
 		// Updates ALL the things.
 		root.update(game.delta);
 		// Draws ALL the things.
-		root.transformAndDraw(game.context);
+		root.draw(game.context);
 	});
 
 	// This is the main setup that kicks off the whole thing
