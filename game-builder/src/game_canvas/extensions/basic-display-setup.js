@@ -56,9 +56,9 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 			viewport.addLayer("Front");
 
 			// Set a bunch of shortcuts for [viewport](@@viewport@@) + [layer](@@layer@@) setups that will be used oftenly
-			gb.setViewportShortCut('MainBack', [{viewport:'Main', layer:'Back'}]);
-			gb.setViewportShortCut('MainMiddle', [{viewport:'Main', layer:'Middle'}]);
-			gb.setViewportShortCut('MainFront', [{viewport:'Main', layer:'Front'}]);
+			Gb.setViewportShortCut('MainBack', [{viewport:'Main', layer:'Back'}]);
+			Gb.setViewportShortCut('MainMiddle', [{viewport:'Main', layer:'Middle'}]);
+			Gb.setViewportShortCut('MainFront', [{viewport:'Main', layer:'Front'}]);
 		}
 	});
 
