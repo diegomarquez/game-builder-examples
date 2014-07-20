@@ -11,7 +11,7 @@
  * [assembler](@@assembler@@),
  * [groups](@@groups@@)
  * [viewports](@@viewports@@)
- * [basic-layer-setup](@@basic-layer-setup@@),
+ * [basic-display-setup](@@basic-display-setup@@),
  * [basic-game-object](@@basic-game-object@@),
  * [box-renderer](@@box-renderer@@)
  */
