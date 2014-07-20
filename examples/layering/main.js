@@ -36,6 +36,7 @@ define(function(require){
 
 		// Each [game-object](@@game-object@@) is added to a different updating
 		// [group](@@group@@) and to a different [layer](@@layer@@) of the same [viewport](@@viewport@@)
+		// The third argument is defined in [basic-display-setup](@@basic-display-setup@@)
 		gb.add('Base_3', 'First', 'MainBack');
 		gb.add('Base_2', 'Second', 'MainMiddle');
 		gb.add('Base_1', 'Third', 'MainFront');
