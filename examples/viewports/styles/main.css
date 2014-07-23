@@ -1,4 +1,8 @@
-/* Insert all the styling needed here*/
+@import url(http://fonts.googleapis.com/css?family=Press+Start+2P);
+
+div {
+  font-family: 'Press Start 2P';
+}
 
 #game {
 	background-color: #000000;

@@ -9,6 +9,7 @@ require.config({
     "logic-bundle": "../common_src/bundles/logic-bundle",
     "nesting-bundle": "../common_src/bundles/nesting-bundle",
     "rendering-bundle": "../common_src/bundles/rendering-bundle",
+    "complex-display-setup": "../common_src/complex-display-setup",
     "component-1": "../common_src/component-1",
     "state-1": "../common_src/state-1",
     "state-2": "../common_src/state-2",
