@@ -37,8 +37,8 @@ define(function(require) {
 			
 			this.componentPool.createConfiguration("Path_1", 'Path_Renderer').args({ 
 				name: 'Path',
-				pathWidth: 10,
-				pathHeight: 10,
+				width: 10,
+				height: 10,
 				offset:'center',
 				drawPath: function(context) {
 					context.fillStyle = "#FF0000";
