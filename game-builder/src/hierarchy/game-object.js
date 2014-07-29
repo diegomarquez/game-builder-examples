@@ -59,7 +59,7 @@
  * --------------------------------
  */
 define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, Matrix, DebugDraw) {
-	var go;
+	var go, r;
 
 	var GameObject = Delegate.extend({
 		init: function() {
@@ -123,6 +123,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			this.canUpdate = false;
 			// if this is true the game object will render.
 			this.canDraw = false;
+
+			// Color that will be used to draw a little shape to outline the position if the **debug**
+			// property of [gb](@@gb@@) is set to true;
+			this.debugColor = "#FF00FF";
 		},
 		/**
 		 * --------------------------------
@@ -318,7 +322,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		/**
 		 * <p style='color:#AD071D'><strong>transform</strong></p>
 		 *
-		 * Generates the concatenated [matrix-3x3](@@matrix-3x3@@) used to itself in the proper place
+		 * Generates the concatenated [matrix-3x3](@@matrix-3x3@@) used to draw itself in the proper place
 		 */
 		transform: function() {
 			this.getMatrix(this.matrix);
@@ -333,19 +337,18 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 * Draws the game-object into the specified Context 2D, using it's [matrix-3x3](@@matrix-3x3@@)
 		 * 
 		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+		 * @param  {Object} viewport The [viewport](@@viewport@@) this objects is being drawn too
 		 */
-		draw: function(context, viewX, viewY, viewOffsetX, viewOffsetY, viewWidth, viewHeight) {
+		draw: function(context, viewport) {
 			if (!this.canDraw) return;
 
 			context.save();
 
 			context.transform(this.matrix.a, this.matrix.b, this.matrix.c, this.matrix.d, this.matrix.tx, this.matrix.ty);
-
-			if(this.renderer) {
-				this.renderer.draw(context);
-			}
-
-			DebugDraw.call(this, context);
+			
+			if(this.renderer) this.renderer.draw(context);
+			
+			DebugDraw.gameObject.call(this, context, viewport);
 
 			context.restore();
 		},
@@ -512,6 +515,38 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			}
 
 			return m.decompose(r);
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>isContainer</strong></p>
+		 *
+		 * @return {Boolean} Wheter it is a container object or not
+		 */
+		isContainer: function() {
+			return false;
+		},
+
+		/**
+		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
+		 *
+		 * This method is only executed if the **debug** property of the parent [gb](@@gb@@)
+		 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
+		 * 
+		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+		 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
+		 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
+		 */
+		debug_draw: function(context, viewport, draw) {
+			r = this.matrix.decompose(r);
+				
+			// Draw the center of the object
+			context.save();
+			context.translate(r.x, r.y);
+			draw.circle(context, 0, 0, 1, null, this.debugColor, 2);
+			context.restore();
 		}
 		/**
 		 * --------------------------------

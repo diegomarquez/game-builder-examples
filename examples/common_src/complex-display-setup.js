@@ -48,12 +48,14 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 
 			// Create a [viewport](@@viewport@@). It has a width and a height along with offset coordinates
 			// in case you don't want it to start in the top left corner of the canvas
-			var viewport = Viewports.add("Main", Gb.canvas.width, Gb.canvas.height, 0, 0);
+			var viewport = Viewports.add("Main", Gb.canvas.width-40, Gb.canvas.height-40, 20, 20);
 			
 			// Set the [layers](@@layer@@) this [viewport](@@viewport@@) will have
 			viewport.addLayer("Back");
 			viewport.addLayer("Middle");
 			viewport.addLayer("Front");
+
+			viewport.setStroke(2, "#00FF00");
 
 			var mini = Viewports.add("Mini", Gb.canvas.width/3, Gb.canvas.height - 20, Gb.canvas.width/2 + 57, 10);
 		

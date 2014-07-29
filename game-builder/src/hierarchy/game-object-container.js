@@ -126,7 +126,9 @@ define(["game-object"], function(GameObject){
 				child.update(delta);
 				
 				if(!child.components) {
-					child.transform();	
+					if (!child.isContainer()) {
+						child.transform();	
+					}
 				} else {
 					for(var k=0; k<child.components.length; k++) {
 						if(child.components[k].update) {
@@ -134,7 +136,9 @@ define(["game-object"], function(GameObject){
 						}
 					}	
 					
-					child.transform();
+					if (!child.isContainer()) {
+						child.transform();	
+					}
 				}
 			}
 		},
@@ -150,9 +154,10 @@ define(["game-object"], function(GameObject){
 		 * Then it draws all of it's children
 		 * 
 		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+		 * @param  {Object} viewport The [viewport](@@viewport@@) this objects is being drawn too
 		 */
-		draw: function(context) {			
-			this._super(context);
+		draw: function(context, viewport) {			
+			this._super(context, viewport);
 
 			if(!this.childs) return;
 						
@@ -163,7 +168,7 @@ define(["game-object"], function(GameObject){
 
 				if(!child.canDraw) continue;
 
-				child.draw(context, viewX, viewY, viewOffsetX, viewOffsetY, viewWidth, viewHeight);	
+				child.draw(context, viewport);	
 			}
 		},
 		/**
@@ -245,10 +250,19 @@ define(["game-object"], function(GameObject){
 			}
 
 			this._super();
-		}
+		},
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>isContainer</strong></p>
+		 *
+		 * @return {Boolean} Wheter it is a container object or not
+		 */
+		isContainer: function() {
+			return true;
+		}
 	});
 
 	return GameObjectContainer;

@@ -42,11 +42,13 @@ define(function(require) {
 			this.componentPool.createConfiguration("Large_box", 'path-renderer')
 				.args({
 					skipCache: true, 
+					width: gb.canvas.width,
+					height: gb.canvas.height,
 					drawPath: function(context) {
 						context.save();
 
 						context.beginPath();
-	        			context.rect(0, 0, gb.canvas.width, gb.canvas.height);
+	        			context.rect(0, 0, this.width, this.height);
 		        		context.lineWidth = 10;
 		        		context.strokeStyle = "#FFFFFF";
 		        		context.stroke();        	

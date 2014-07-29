@@ -13,6 +13,8 @@
 define(function(require){	
 	var gb = require('gb');
 
+	gb.debug = true;
+
 	// Storing some references to avoid excesive typing
 	var game = gb.game;
 	var root = gb.root;
@@ -37,29 +39,29 @@ define(function(require){
 
 			go.renderer.color = util.rand_color(); 
 		}
-
+		 
 		var minimapViewArea = gb.add('Frame', 'First', 'MiniFront');
 
 		var v = gb.viewports.get('Main');
 
 		keyboard.onKeyDown(keyboard.UP, this, function() { 
-			v.y += 10; 
-			minimapViewArea.y -= 10;
-		});
-		
-		keyboard.onKeyDown(keyboard.DOWN, this, function() { 
 			v.y -= 10; 
 			minimapViewArea.y += 10;
 		});
 		
+		keyboard.onKeyDown(keyboard.DOWN, this, function() { 
+			v.y += 10; 
+			minimapViewArea.y -= 10;
+		});
+		
 		keyboard.onKeyDown(keyboard.LEFT, this, function() { 
-			v.x += 10; 
-			minimapViewArea.x -= 10;
+			v.x -= 10; 
+			minimapViewArea.x += 10;
 		});
 		
 		keyboard.onKeyDown(keyboard.RIGHT, this, function() { 
-			v.x -= 10; 
-			minimapViewArea.x += 10;
+			v.x += 10; 
+			minimapViewArea.x -= 10;
 		});
 	});
 
