@@ -1,7 +1,8 @@
 # viewports
 -------------------
 
-Insert some cool description here about why the hell you are doing this.
+This examples shows how you can set up a world and viewports to be able to see the things in the world
+from different perspectives. Pretty neat.
 
 A [GAME-BUILDER][game-builder] project
 

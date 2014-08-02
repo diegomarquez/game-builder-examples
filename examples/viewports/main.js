@@ -12,6 +12,7 @@
 
 define(function(require){	
 	var gb = require('gb');
+	var world = require('world');
 
 	gb.debug = true;
 
@@ -30,38 +31,65 @@ define(function(require){
 		console.log("Welcome to Game-Builder!");
 
 		require('input-bundle').create();
+		require('viewports-bundle').create();
 
 		for (var i=0; i<20; i++) {
 			var go = gb.add('Base_2', 'First', 'MainMiniFront');
 
-			go.x = util.rand_f(20, (gb.canvas.width*3)-20);
-			go.y = util.rand_f(20, (gb.canvas.height*9)-20);
+			go.x = util.rand_f(20, world.getWidth() - 20);
+			go.y = util.rand_f(20, world.getHeight() - 20);
 
 			go.renderer.color = util.rand_color(); 
-		}
+		} 
 		 
 		var minimapViewArea = gb.add('Frame', 'First', 'MiniFront');
 
-		var v = gb.viewports.get('Main');
+		var v = gb.viewports.get('Main');  
 
-		keyboard.onKeyDown(keyboard.UP, this, function() { 
-			v.y -= 10; 
-			minimapViewArea.y += 10;
-		});
-		
 		keyboard.onKeyDown(keyboard.DOWN, this, function() { 
-			v.y += 10; 
-			minimapViewArea.y -= 10;
+			// Move the viewport
+			v.y -= 10; 
+
+			// Lock the viewport from going past the world bounds to the bottom
+			if (v.y < -world.getHeight()+minimapViewArea.renderer.height) 
+				v.y = -world.getHeight()+minimapViewArea.renderer.height;
+			
+			// Move the game object that represents the main viewport in the smaller viewport
+			minimapViewArea.y = v.y*-1;
 		});
 		
-		keyboard.onKeyDown(keyboard.LEFT, this, function() { 
-			v.x -= 10; 
-			minimapViewArea.x += 10;
+		keyboard.onKeyDown(keyboard.UP, this, function() { 
+			// Move the viewport
+			v.y += 10; 
+
+			// Lock the viewport from going past the world bounds to the top
+			if (v.y > 0) v.y = 0;
+			
+			// Move the game object that represents the main viewport in the smaller viewport
+			minimapViewArea.y = v.y*-1;
 		});
 		
 		keyboard.onKeyDown(keyboard.RIGHT, this, function() { 
+			// Move the viewport
+			v.x -= 10; 
+
+			// Lock the viewport from going past the world bounds to the right
+			if (v.x < -world.getWidth()+minimapViewArea.renderer.width) 
+				v.x = -world.getWidth()+minimapViewArea.renderer.width;
+
+			// Move the game object that represents the main viewport in the smaller viewport
+			minimapViewArea.x = v.x*-1;
+		});
+		
+		keyboard.onKeyDown(keyboard.LEFT, this, function() { 
+			// Move the viewport
 			v.x += 10; 
-			minimapViewArea.x -= 10;
+
+			// Lock the viewport from going past the world bounds to the left
+			if (v.x > 0) v.x = 0;
+			
+			// Move the game object that represents the main viewport in the smaller viewport
+			minimapViewArea.x = v.x*-1;
 		});
 	});
 

@@ -9,6 +9,7 @@
  * [groups](@@groups@@)
  * [viewports](@@viewports@@)
  * [gb](@@gb@@)
+ * [world](@@world@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -32,7 +33,7 @@
 /**
  * --------------------------------
  */
-define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, Gb, Extension) {
+define(["groups", "viewports", "gb", "world", "extension"], function(Groups, Viewports, Gb, World, Extension) {
 	var BasicLayerSetup = Extension.extend({
 		type: function() {
 			// Notice the use of the constant CREATE defined in [game](@@game@@)
@@ -41,6 +42,9 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 		},
 
 		execute: function() {
+			// Configure the [world](@@world@@) object
+			World.create(Gb.canvas.width*3, Gb.canvas.height*9);
+
 			// Set a few update [groups](@@group@@)
 			Groups.add("First");
 			Groups.add("Second");
@@ -55,12 +59,12 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 			viewport.addLayer("Middle");
 			viewport.addLayer("Front");
 
-			viewport.setStroke(2, "#00FF00");
+			viewport.setStroke(3, "#00FF00");
 
 			var mini = Viewports.add("Mini", Gb.canvas.width/3, Gb.canvas.height - 20, Gb.canvas.width/2 + 57, 10);
-		
-			mini.scaleX /= 9;
-			mini.scaleY /= 9;
+			
+			// Scale the [viewport](@@viewport@@) so it can show all the [world](@@world@@) 
+			World.scaleViewportToFit(mini);
 
 			mini.addLayer("Front");
 			mini.setStroke(3, "#FF0000");
