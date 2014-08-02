@@ -5,7 +5,6 @@
  * Depends of:
  * [gb](@@gb@@),
  * [game](@@game@@),
- * [root](@@root@@),
  * [groups](@@groups@@),
  * [basic-display-setup](@@basic-display-setup@@),
  * [layering-bundle](@@nesting-bundle@@),
@@ -20,7 +19,6 @@ define(function(require){
 	
 	// Storing some references to avoid excesive typing
 	var game = gb.game;
-	var root = gb.root;
 	var groups = gb.groups;
 
 	var keyboard = require('keyboard');

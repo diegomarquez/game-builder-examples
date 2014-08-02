@@ -4,8 +4,7 @@
  *
  * Depends of:
  * [game](@@game@@),
- * [gb](@@gb@@),
- * [root](@@root@@)
+ * [gb](@@gb@@)
  */
 
 /**
@@ -16,7 +15,6 @@ define(function(require){
 
 	// Storing some references to avoid excesive typing
 	var game = gb.game;
-	var root = gb.root;
 
 	game.add_extension(require("activity-display"));
 

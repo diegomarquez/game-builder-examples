@@ -5,7 +5,6 @@
  * Depends of:
  * [gb](@@gb@@),
  * [game](@@game@@),
- * [root](@@root@@),
  * [state-machine](@@state-machine@@),
  * [keyboard](@@keyboard@@),
  * [state-1](@@state-1@@),
@@ -20,7 +19,6 @@ define(function(require){
 	var gb = require('gb');
 	
 	var game = gb.game;
-	var root = gb.root;
 
 	var stateMachineFactory = require('state-machine');
 

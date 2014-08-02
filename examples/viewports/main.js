@@ -5,7 +5,7 @@
  * Depends of:
  * [gb](@@gb@@),
  * [game](@@game@@),
- * [root](@@root@@),
+ * [world](@@world@@),
  * [complex-display-setup](@@complex-display-setup@@),
  * [input-bundle](@@input-bundle@@),
  */
@@ -18,8 +18,6 @@ define(function(require){
 
 	// Storing some references to avoid excesive typing
 	var game = gb.game;
-	var root = gb.root;
-
 	var keyboard = require('keyboard');
 	var util = require('util');
 

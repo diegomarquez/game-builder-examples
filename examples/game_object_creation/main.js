@@ -5,7 +5,6 @@
  * Depends of:
  * [game](@@game@@),
  * [gb](@@gb@@),
- * [root](@@root@@),
  * [game-object-pool](@@game-object-pool@@),
  * [component-pool](@@component-pool@@),
  * [assembler](@@assembler@@),
@@ -24,7 +23,6 @@ define(function(require){
 	
 	// Storing some references to avoid excesive typing
 	var game = gb.game;
-	var root = gb.root;
 	var assembler = gb.assembler;
 	var gameObjectPool = gb.goPool;
 	var componentPool = gb.coPool;

@@ -5,7 +5,6 @@
  * Depends of:
  * [gb](@@gb@@),
  * [game](@@game@@),
- * [root](@@root@@),
  * [timer-factory](@@timer-factory@@),
  * [keyboard](@@keyboard@@)
  */
@@ -17,7 +16,6 @@ define(function(require){
 	var gb = require('gb');
 	
 	var game = gb.game;
-	var root = gb.root;
 
 	var timer_factory = require('timer-factory');
 	var keyboard = require('keyboard');

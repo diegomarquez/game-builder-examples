@@ -5,7 +5,6 @@
  * Depends of:
  * [gb](@@gb@@),
  * [game](@@game@@),
- * [root](@@root@@),
  * [state-machine](@@state-machine@@),
  * [keyboard](@@keyboard@@)
  */
@@ -17,7 +16,6 @@ define(function(require){
 	var gb = require('gb');
 	
 	var game = gb.game;
-	var root = gb.root;
 
 	game.add_extension(require("activity-display"));
 

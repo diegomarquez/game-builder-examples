@@ -5,7 +5,6 @@
  * Depends of:
  * [gb](@@gb@@),
  * [game](@@game@@),
- * [root](@@root@@),
  * [basic-display-setup](@@basic-display-setup@@),
  * [nesting-bundle](@@nesting-bundle@@)
  */
@@ -17,7 +16,6 @@ define(function(require){
 	var gb = require('gb');
 	
 	var game = gb.game;
-	var root = gb.root;
 
 	game.add_extension(require('basic-display-setup'));
 	game.add_extension(require("activity-display"));
