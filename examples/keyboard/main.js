@@ -87,11 +87,10 @@ define(function(require){
 
 	// This is the main update loop
 	game.on(game.UPDATE, this, function() {
-		// Updates ALL the things.
-		root.update(game.delta);
-		// Draws ALL the things.
-		root.draw(game.context);
-
+		// Do stuff here that needs constant updating
+		
+		// this.delta => Time delta between updates
+		// this.context => 2D Context where stuff is drawn
 		if(keyboard.isKeyDown(keyboard.A)){ console.log('A is down') }
 		if(keyboard.isKeyDown(keyboard.S)){ console.log('S is down') }
 		if(keyboard.isKeyDown(keyboard.D)){ console.log('D is down') }
