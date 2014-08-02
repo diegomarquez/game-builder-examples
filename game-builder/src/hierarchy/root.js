@@ -85,8 +85,6 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 	        	
 				// make all the drawings relative to the viewport's visible area
 	    		context.translate(v.x + v.offsetX, v.y + v.offsetY);
-	    		// context.translate(v.x, v.y);
-	    		// context.translate(v.offsetX, v.offsetY);
 	    		context.scale(v.scaleX, v.scaleY);
 				
 				// Draw all the game objects associated with this viewport
