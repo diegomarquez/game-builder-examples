@@ -61,7 +61,7 @@ module.exports = function(grunt) {
 
           return [ 
             'git add . -A',
-            'git diff --quiet --exit-code --cached || git commit -m "<%= commitMessage %>. Pushed by grunt on <%= grunt.template.today("yyyy-mm-dd") %>"',
+            'git diff --quiet --exit-code --cached || git commit -m "<%= commitMessage %>. Pushed by grunt."',
             'git push -f'
           ].join('&&');   
         }
@@ -74,7 +74,7 @@ module.exports = function(grunt) {
           return [
             'cd game-builder',
             'git add . -A',
-            'git diff --quiet --exit-code --cached || git commit -m "<%= commitMessage %>. Pushed by grunt on <%= grunt.template.today("yyyy-mm-dd") %>"',
+            'git diff --quiet --exit-code --cached || git commit -m "<%= commitMessage %>. Pushed by grunt."',
             'git push -f',
             'cd ..'
           ].join('&&');
