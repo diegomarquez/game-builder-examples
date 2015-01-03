@@ -81,6 +81,16 @@ module.exports = function(grunt) {
         }
       },
 
+      pullGameBuilder: {
+      	command: function() {
+          return [
+            'cd game-builder',
+            'git pull',
+            'cd ..'
+          ].join('&&');
+        }
+      },
+
       npmInstall: {
         command: function(path) {
           return [ 
@@ -109,5 +119,5 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['npmAll', 'hub:buildAll']);
   grunt.registerTask('generate', ['hub:generateAll']);
 
-  grunt.registerTask('push', ['shell:pushExamples', 'shell:pushGameBuilder']);
+  grunt.registerTask('push', ['shell:pullGameBuilder', 'shell:pushExamples', 'shell:pushGameBuilder']);
 };
