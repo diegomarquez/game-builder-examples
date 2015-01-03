@@ -45,7 +45,7 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	 *
 	 * @throws {Error} If the id argument is missing.
 	 */
-	Reclaimer.prototype.claim = function(go, id) {
+	Reclaimer.prototype.claimWithId = function(go, id) {
 		if(!go) {
 			ErrorPrinter.missingArgumentError('Reclaimer', 'go');
 		}
@@ -55,13 +55,50 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 		}
 
 		if(go.typeId == id || go.poolId == id) {
-			if (go.parent) {
-				go.parent.remove(go);
-			}
-
-			go.clear();
+			this.claim(go);
 		}
 	}
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>claim</strong></p>
+	 *
+	 * Removes a [game-object](@@game-object@@) from it's parent if it has one, and then
+	 * calls it's **clear** method. This sends it and all of the objects
+	 * that depend of it to their respective pools.
+	 * 
+	 * @param  {Object} go [game-object](@@game-object@@) to recycle
+	 */
+	Reclaimer.prototype.claim = function(go) {	
+		if (go.parent) {
+			go.parent.remove(go);
+		}
+
+		go.clear();
+	},
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>claim</strong></p>
+	 *
+	 * Claims all the children from a [game-object-container](@@game-object-container@@), 
+	 * but does not claim the [game-object](@@game-object@@) itself.
+	 * 
+	 * @param  {Object} go [game-object-container](@@game-object-container@@) to remove children from
+	 */
+	Reclaimer.prototype.claimChildren = function(go) {	
+		if (go.isContainer()) {
+			var children = go.findChildren().all();
+
+			for (var i = 0; i < children.length; i++) {
+				this.claim(children[i]);
+			}
+		}
+	},
 	/**
 	 * --------------------------------
 	 */
@@ -69,7 +106,7 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	/**
 	 * <p style='color:#AD071D'><strong>claimType</strong></p>
 	 *
-	 * Calls **claim** on all the active [game-objects](@@game-object@@)
+	 * Calls **claimWithId** on all the active [game-objects](@@game-object@@)
 	 * that match the given type id. 
 	 * 
 	 * @param  {String} typeName An id matching a existing type in [game-object-pool](@@game-object-pool@@)
@@ -78,7 +115,7 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 		var activeGameObjects = GameObjectPool.getActiveObjects(typeName);
 
 		for (var i=activeGameObjects.length-1; i>=0; i--) {
-			this.claim(activeGameObjects[i], typeName);
+			this.claimWithId(activeGameObjects[i], typeName);
 		}
 	};
 	/**
@@ -88,7 +125,7 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	/**
 	 * <p style='color:#AD071D'><strong>claimConfiguration</strong></p>
 	 *
-	 * Calls **claim** on all the active [game-objects](@@game-object@@)
+	 * Calls **claimWithId** on all the active [game-objects](@@game-object@@)
 	 * that match the given configuration id. 
 	 * 
 	 * @param  {String} configurationName An id matching an existing configuration in [game-object-pool](@@game-object-pool@@)
@@ -98,7 +135,7 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 		var activeGameObjects = GameObjectPool.getActiveObjects(configuration.type);
 
 		for (var i=activeGameObjects.length-1; i>=0; i--) {		
-			this.claim(activeGameObjects[i], configurationName);
+			this.claimWithId(activeGameObjects[i], configurationName);
 		}
 	};
 	/**
@@ -145,13 +182,13 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 
 				if(capitalizedMode == 'Configuration') {
 					if (doNotClaim.indexOf(go.typeId) == -1) {
-						this.claim(go, go.typeId);
+						this.claimWithId(go, go.typeId);
 					}
 				}
 
 				if(capitalizedMode == 'Type') {
 					if (doNotClaim.indexOf(go.poolId) == -1) {
-						this.claim(go, go.poolId);
+						this.claimWithId(go, go.poolId);
 					}
 				}
 			}
@@ -187,12 +224,44 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	 *
 	 * Claims all the [game-objects](@@game-object@@) and then
 	 * clears both [game-object-pool](@@game-object-pool@@) and
-	 * [component-pool](@@component-pool@@)
+	 * [component-pool](@@component-pool@@). The Pools are no longer re-useable after this. They need to be configured again.
 	 */
 	Reclaimer.prototype.clearAllPools = function() {
 		this.claimAll();
 		GameObjectPool.clear();
 		ComponentPool.clear();
+	};
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>clearAllPools</strong></p>
+	 *
+	 * Claims all the [game-objects](@@game-object@@) and then
+	 * clears off the instances held in both [game-object-pool](@@game-object-pool@@) and
+	 * [component-pool](@@component-pool@@). Configurations are kepts so the pools can still be re-used.
+	 */
+	Reclaimer.prototype.clearAllObjectsFromPools = function() {
+		this.claimAll();
+		GameObjectPool.clearObjects();
+		ComponentPool.clearObjects();
+	};
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>clearGameObjectConfiguration</strong></p>
+	 *
+	 * Claims all the [game-objects](@@game-object@@) associated with the specified configuration id on the [game-object-pool](@@game-object-pool@@),
+	 * it then destroys the configuration itself in the [game-object-pool](@@game-object-pool@@) so it can't be used anymore.
+	 *
+	 * @param {String} [configurationId] A configuration id set in [game-object-pool](@@game-object-pool@@)
+	 */
+	Reclaimer.prototype.clearGameObjectConfiguration = function(configurationId) {
+		this.claimConfiguration(configurationId);
+		GameObjectPool.clearConfiguration(configurationId);
 	};
 	/**
 	 * --------------------------------

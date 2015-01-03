@@ -54,7 +54,7 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 * 
 		 * @throws {Error} Always
 		 */
-		draw: function(context) {
+		draw: function(context, viewport) {
 			ErrorPrinter.mustOverrideError('Renderer');
 		},
 		/**
@@ -126,25 +126,39 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
 		 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
+		 * @param  {Object} gb     A reference to the [gb](@@gb@@) module
 		 */
-		debug_draw: function(context, viewport, draw) {
-			// Top Left
-			drawVertex.call(this, context, viewport, draw, this.rendererOffsetX(), this.rendererOffsetY());
+		debug_draw: function(context, viewport, draw, gb) {
+			if (!gb.rendererDebug) return;
+
+			context.save();
+			context.beginPath();
+			
+			context.strokeStyle = this.debugColor;
+			context.lineWidth = 1;
+
+			// Top Left 
+			drawLineAndPoint.call(this, context, this.rendererOffsetX(), this.rendererOffsetY(), draw, 'moveTo');
 			// Top Right
-			drawVertex.call(this, context, viewport, draw, this.rendererOffsetX() + this.rendererWidth(), this.rendererOffsetY());
-			// Bottom Left
-			drawVertex.call(this, context, viewport, draw, this.rendererOffsetX(), this.rendererOffsetY() + this.rendererHeight());
+			drawLineAndPoint.call(this, context, this.rendererOffsetX() + this.rendererWidth(), this.rendererOffsetY(), draw, 'lineTo');
 			// Bottom Right
-			drawVertex.call(this, context, viewport, draw, this.rendererOffsetX() + this.rendererWidth(), this.rendererOffsetY() + this.rendererHeight());
+			drawLineAndPoint.call(this, context, this.rendererOffsetX() + this.rendererWidth(), this.rendererOffsetY() + this.rendererHeight(), draw, 'lineTo');
+			// Bottom Left
+			drawLineAndPoint.call(this, context, this.rendererOffsetX(), this.rendererOffsetY() + this.rendererHeight(), draw, 'lineTo');
+
+			context.closePath();
+
+			context.stroke();
+			context.restore();
 		}
 		/**
 		 * --------------------------------
 		 */
 	});
 
-	var drawVertex = function(context, viewport, draw, offsetX, offsetY) {
-		r = this.parent.matrix.transformPoint(offsetX, offsetY, r);		
-		draw.circle(context, r.x, r.y, 1, null, this.debugColor, 2);
+	var drawLineAndPoint = function(context, offsetX, offsetY, draw, lineMethod) {
+		r = this.parent.matrix.transformPoint(offsetX, offsetY, r); 
+		context[lineMethod](r.x, r.y);
 	}
 
 	return Renderer;

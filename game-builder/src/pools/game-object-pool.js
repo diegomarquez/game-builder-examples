@@ -30,11 +30,11 @@
  * object, but with three different configurations, for example. ej.
  *
  * ``` javascript
- * componentPool.createPool("GameObject", someGameObjectPrototypeObject, 1);
+ * gameObjectPool.createPool("GameObject", someGameObjectPrototypeObject, 1);
  * 
-	componentPool.createConfiguration("Conf_1", 'GameObject').args({some_property:  1});
-	componentPool.createConfiguration("Conf_2", 'GameObject').args({some_property:2});
-	componentPool.createConfiguration("Conf_3", 'GameObject').args({some_property: 3});
+	gameObjectPool.createConfiguration("Conf_1", 'GameObject').args({some_property:  1});
+	gameObjectPool.createConfiguration("Conf_2", 'GameObject').args({some_property:2});
+	gameObjectPool.createConfiguration("Conf_3", 'GameObject').args({some_property: 3});
  *
  * ```
  *
@@ -90,24 +90,38 @@ define(function(require) {
 		 * @return {Object}       A configuration object. This objects have a lot of information
 		 */
 		createConfiguration: function(alias, type) {
+			var self = this;
+
 			// Configuration objects for [game-objects](@@game-object@@)
 			// contain the arguments that this configuration will apply
 			var configuration = {
 				type: type,
+				alias: alias,
 				hardArguments: null,
 				childs: [],
 				components: [],
 				renderer: null,
+				isChild: false,
 
 				// Returns the id of the pool this configuration refers to
 				typeId: function() {
 					return type;
 				},
 
+				// Returns the id of this configuration
+				configurationId: function() {
+					return alias;
+				},
+
+				isChildOnly: function() {
+					return this.isChild;
+				},
+
 				// Set which arguments this configuration will apply to a
 				// [game-object](@@game-object@@)
 				args: function(args) {
 					this.hardArguments = args;
+					self.execute(self.UPDATE_CONFIGURATION, this);
 					return this;
 				},
 				// Add a child, specifying
@@ -118,6 +132,7 @@ define(function(require) {
 						childId: childId,
 						args: args
 					});
+					self.execute(self.UPDATE_CONFIGURATION, this);
 					return this;
 				},
 				// Add a [component](@@component@@), specifying an existing 
@@ -125,6 +140,7 @@ define(function(require) {
 				// and arguments the component will take when initialized
 				addComponent: function(componentId, args) {
 					this.components.push(getComponentDescription(componentId, args));
+					self.execute(self.UPDATE_CONFIGURATION, this);
 					return this;
 				},
 				// Set a renderer, specifying an existing 
@@ -132,18 +148,48 @@ define(function(require) {
 				// renderer will take when initialized
 				setRenderer: function(rendererId, args) {
 					this.renderer = getComponentDescription(rendererId, args);
+					self.execute(self.UPDATE_CONFIGURATION, this);
+					return this;
+				},
+				// Set whether this configurations is meant to be used only as a child of another
+				// [game-obejct](@@game-obejct@@)
+				childOnly: function() {
+					this.isChild = true;
 					return this;
 				}
 			};
 
 			this.configurations[alias] = configuration;
+			this.execute(this.CREATE_CONFIGURATION, configuration);
 
 			return configuration;
 		},
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>createConfigurationFromObject</strong></p>
+		 *
+		 * @param  {Object} configurationObject An object with all the information needed to set up a configuration for a pooled type
+		 *
+		 * @return {Object} The configuration object created
+		 */
+		createConfigurationFromObject: function(configurationObject) {
+			var configuration = this.createConfiguration(configurationObject.alias, configurationObject.type);
 
+			for (var k in configurationObject) {
+				configuration[k] = configurationObject[k];
+			}
+
+			this.execute(this.CREATE_CONFIGURATION, configuration);
+
+			return configuration;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
 		/**
 		 * <p style='color:#AD071D'><strong>getName</strong></p>
 		 *
@@ -187,22 +233,30 @@ define(function(require) {
 		 * Gets a configuration for the requested [game-object](@@game-object@@).
 		 *
 		 * @param  {String} alias      Id of the [game-object](@@game-object@@) requested
+		 * @param  {Boolean} nestedCall
+		 * @param  {Boolean} createNew 
 		 *
 		 * @throws {Error} If the corresponding pool has no available objects
 		 * @throws {Error} If a [game-object](@@game-object@@) type which did not specified a maximun amount is requested explicitly
 		 * @return {Object} The configuration object requested
 		 */
-		getConfiguration: function(alias, nestedCall) {
+		getConfiguration: function(alias, nestedCall, createNew) {
 			var configuration = this.getConfigurationObject(alias);
 			var pool = this.pools[configuration.type];
 
-			if(!nestedCall && !pool.maxAmount) {
+			if(!nestedCall && !pool.maxAmount && !pool.dynamic) {
 				ErrorPrinter.printError('Game Object Pool', 'Game Object with type: ' + configuration.type + ' does not have a value for maxAmount. It can not be requested explicitly')
 			}
 
 			if (pool.objects.length <= 0) {
-				var ok = this.createNewIfNeeded(configuration.type);
-				
+				var ok;
+
+				if (pool.dynamic) {
+					ok = this.createNewIfNeeded(configuration.type, true);
+				} else {
+					ok = this.createNewIfNeeded(configuration.type, createNew);
+				}
+
 				if(!ok) {
 					ErrorPrinter.printError('Game Object Pool', 'Game Object with type: ' + configuration.type + ' is not available');
 				}
@@ -233,10 +287,43 @@ define(function(require) {
 			}
 
 			return this.configurations[alias];
-		}
+		},
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+     * <p style='color:#AD071D'><strong>getConfigurationTypes</strong></p>
+     *
+     * Get an array with all the names of the configurations currently in the pool
+     *
+     * The **options** arguments is an object which can have the **filterChilds** property. Specifying it will filter
+     * out all the configurations which are meant to only be childs of other configurations 
+     * 
+     * @param {Object} options
+     * 
+     * @return {Array} The names of the configurations registered in the pool
+     */
+    getConfigurationTypes: function(options) {
+    	options = options || {};
+
+      var r = []
+
+      for (var k in this.configurations) {
+      	if (options.filterChilds) {
+      		if (!this.configurations[k].isChildOnly()) {
+	      		r.push(k);
+	      	}	
+      	} else {
+      		r.push(k);
+      	}
+      }
+
+      return r;
+    }
+    /**
+     * --------------------------------
+     */
 	});
 
 	return new GameObjectPool();

@@ -34,10 +34,8 @@ define(function(require) {
 
 			// ### Defined keycodes
 			
-			// Not all the keys of the keyboard,
-			// but they should be more than enough
-			// for a [Game-Builder](http://diegomarquez.github.io/game-builder)
-			// project
+			// Not all the keys of the keyboard but they should be more than enough
+			// for a [Game-Builder](http://diegomarquez.github.io/game-builder) project
 
 			this.LEFT = 37;
 			this.UP = 38;
@@ -49,6 +47,7 @@ define(function(require) {
 			this.ESC = 27;
 			this.SPACE = 32;
 
+			this.W = 87;
 			this.A = 65;
 			this.S = 83;
 			this.D = 68;
@@ -78,6 +77,26 @@ define(function(require) {
 			this.GAME_BUTTON_1 = this.A;
 			this.GAME_BUTTON_2 = this.S;
 			this.GAME_BUTTON_PAUSE = this.P;
+
+			// And array with the keys that should avoid the default browser behaviour when they are pressed
+			this.skipDefaultBehaviour = [];
+		},
+
+		/**
+		 * <p style='color:#AD071D'><strong>config</strong></p>
+		 *
+		 * @param  {Object} options An object with various configuration options
+		 */
+		config: function(options) {
+			if (options.gameKeys) {
+				for (var k in options.gameKeys) {
+					this[k] = options.gameKeys[k];		
+				}
+			}
+
+			if (options.skipDefaultBehaviour) {
+				this.skipDefaultBehaviour = options.skipDefaultBehaviour;
+			}
 		},
 
 		/**
@@ -220,51 +239,13 @@ define(function(require) {
 
 	// ### Prevent default behaviour of keys in the browser
 	document.onkeydown = function(event) {
-		if (event.keyCode == keyboard.LEFT ||
-			event.keyCode == keyboard.UP ||
-			event.keyCode == keyboard.RIGHT ||
-			event.keyCode == keyboard.DOWN ||
-			event.keyCode == keyboard.CTRL ||
-			event.keyCode == keyboard.ALT ||
-			event.keyCode == keyboard.ESC ||
-			event.keyCode == keyboard.SPACE ||
-			event.keyCode == keyboard.A ||
-			event.keyCode == keyboard.S ||
-			event.keyCode == keyboard.D ||
-			event.keyCode == keyboard.Z ||
-			event.keyCode == keyboard.X ||
-			event.keyCode == keyboard.C ||
-			event.keyCode == keyboard.NUM_0 ||
-			event.keyCode == keyboard.NUM_1 ||
-			event.keyCode == keyboard.NUM_2 ||
-			event.keyCode == keyboard.NUM_3 ||
-			event.keyCode == keyboard.NUM_4 ||
-			event.keyCode == keyboard.NUM_5) {
+		if (keyboard.skipDefaultBehaviour.indexOf(event.keyCode) != -1) {
 			event.preventDefault();
 		}
 	}
 
 	document.onkeypress = function(event) {
-		if (event.keyCode == keyboard.LEFT ||
-			event.keyCode == keyboard.UP ||
-			event.keyCode == keyboard.RIGHT ||
-			event.keyCode == keyboard.DOWN ||
-			event.keyCode == keyboard.CTRL ||
-			event.keyCode == keyboard.ALT ||
-			event.keyCode == keyboard.ESC ||
-			event.keyCode == keyboard.SPACE ||
-			event.keyCode == keyboard.A ||
-			event.keyCode == keyboard.S ||
-			event.keyCode == keyboard.D ||
-			event.keyCode == keyboard.Z ||
-			event.keyCode == keyboard.X ||
-			event.keyCode == keyboard.C ||
-			event.keyCode == keyboard.NUM_0 ||
-			event.keyCode == keyboard.NUM_1 ||
-			event.keyCode == keyboard.NUM_2 ||
-			event.keyCode == keyboard.NUM_3 ||
-			event.keyCode == keyboard.NUM_4 ||
-			event.keyCode == keyboard.NUM_5) {
+		if (keyboard.skipDefaultBehaviour.indexOf(event.keyCode) != -1) {
 			event.preventDefault();
 		}
 	}

@@ -6,6 +6,7 @@
  * Inherits from: [delegate](@@delegate@@)
  *
  * Depends of:
+ * [util](@@util@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -56,13 +57,15 @@
 /**
  * --------------------------------
  */
-define(["delegate"], function(Delegate) {
+define(["delegate", "util"], function(Delegate, Util) {
 
 	var Component = Delegate.extend({
 		init: function() {
 			this._super();
 
+			this.uid 		= null;
 			this.poolId = null;
+			this.typeId = null;
 			this.parent = null;
 		},
 
@@ -81,7 +84,24 @@ define(["delegate"], function(Delegate) {
 			if (!args) return;
 
 			for (var ha in args) {
-				this[ha] = args[ha];
+				if (Util.isObject(args[ha])) {
+					var getter = args[ha]['_get'];
+					var setter = args[ha]['_set'];
+
+					if (getter || setter) {
+						if (Util.isFunction(getter)) {
+							Util.defineGetter(this, ha, getter);
+						}
+						
+						if (Util.isFunction(setter)) {
+							Util.defineSetter(this, ha, setter);
+						}
+					} else {
+						this[ha] = args[ha];
+					}
+				} else {
+					this[ha] = args[ha];
+				}
 			}
 
 			this.args = args;
@@ -89,6 +109,32 @@ define(["delegate"], function(Delegate) {
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>reset</strong></p>
+		 *
+		 * Not so interesting mehtod, it just resets some properties right
+		 * before the [assembler](@@assembler@@) module starts putting together
+		 * a component.
+		 */
+		reset: function() {
+			this.uid = null;
+			this.parent = null;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>onStarted</strong></p>
+		 *
+		 * This is called once when the parent [game-object](@@game-object@@) is started or when the component is added
+		 * dynamically to a [game-object](@@game-object@@)
+		 */
+		onStarted: function() {
+			this.start();	
+			this.execute(this.START, this);
+		},
 
 		/**
 		 * <p style='color:#AD071D'><strong>onAdded</strong></p>
@@ -100,8 +146,8 @@ define(["delegate"], function(Delegate) {
 		 */
 		onAdded: function(parent) {
 			this.parent = parent;
-			this.execute(this.ADDED, this);
 			this.added(parent);
+			this.execute(this.ADD, this);
 		},
 		/**
 		 * --------------------------------
@@ -115,7 +161,7 @@ define(["delegate"], function(Delegate) {
 		 */
 		onRemoved: function() {
 			this.removed(parent);
-			this.execute(this.REMOVED, this);
+			this.execute(this.REMOVE, this);
 			this.parent = null;
 		},
 		/**
@@ -128,9 +174,11 @@ define(["delegate"], function(Delegate) {
 		 * This is called by the parent [game-object](@@game-object@@) when it
 		 * is destroying itself.
 		 */
-		onRecycled: function() {
+		onRecycled: function() {			
 			this.recycle();
 			this.execute(this.RECYCLE, this);
+
+			this.hardCleanUp();
 		},
 		/**
 		 * --------------------------------
@@ -217,9 +265,10 @@ define(["delegate"], function(Delegate) {
 	});
 
 	// ### Getters for all the types of events a Component can hook into
+	Object.defineProperty(Component.prototype, "START", { get: function() { return 'started'; } });
 	Object.defineProperty(Component.prototype, "ADD", { get: function() { return 'added'; } });
 	Object.defineProperty(Component.prototype, "REMOVE", { get: function() { return 'removed'; } });
-	Object.defineProperty(Component.prototype, "RECYCLE", { get: function() { return 'recycle'; } });
+	Object.defineProperty(Component.prototype, "RECYCLE", { get: function() { return 'recycled'; } });
 	/**
 	 * --------------------------------
 	 */

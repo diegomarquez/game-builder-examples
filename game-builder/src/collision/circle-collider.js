@@ -9,7 +9,6 @@
  * [sat](@@sat@@)
  * [collision-resolver](@@collision-resolver@@)
  * [vector-2D](@@vector-2D@@)
- * [draw](@@draw@@)
  * 
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -48,13 +47,12 @@
 /**
  * --------------------------------
  */
-define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw'],
-	function(CollisionComponent, SAT, CollisionResolver, Vector2D, Draw){
+define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
+	function(CollisionComponent, SAT, CollisionResolver, Vector2D){
 
 	var p = {};
-	var m = null;
 	
-	var Component = CollisionComponent.extend({
+	var CircleCollider = CollisionComponent.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
@@ -80,7 +78,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 		 * The collider follows the position of it's parent.
 		 */
 		update: function() {
-			this.parent.getTransform(p, m);
+			p = this.parent.matrix.transformPoint(0, 0, p);	
 
 			this.collider.pos.x = p.x;
 			this.collider.pos.y = p.y;
@@ -99,18 +97,13 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
 		 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
+		 * @param  {Object} gb     A reference to the [gb](@@gb@@) module
 		 */
-		debug_draw: function(context, viewport, draw) {
-			this.parent.getTransform(p, m);
+		debug_draw: function(context, viewport, draw, gb) {
+			if (!gb.colliderDebug) return;
 
-			context.save();
-
-			context.setTransform(1, 0, 0, 1, 0, 0);			
-			context.translate(p.x, p.y);
-			Draw.circle(context, 0, 0, this.radius, null, this.debugColor, 2);
-
-			context.restore();
-
+			p = this.parent.matrix.transformPoint(0, 0, p);		
+			draw.circle(context, p.x, p.y, this.collider.r, null, this.debugColor, 2);
 			this._super();
 		} 
 		/**
@@ -118,5 +111,5 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 		 */
 	});
 
-	return Component;
+	return CircleCollider;
 });

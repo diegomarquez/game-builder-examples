@@ -9,7 +9,6 @@
  * [sat](@@sat@@)
  * [collision-resolver](@@collision-resolver@@)
  * [vector-2D](@@vector-2D@@)
- * [draw](@@draw@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -53,13 +52,42 @@
 /**
  * --------------------------------
  */
-define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw'],
-	function(CollisionComponent, SAT, CollisionResolver, Vector2D, Draw) {
+define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
+	function(CollisionComponent, SAT, CollisionResolver, Vector2D) {
 
 		var p = {};
 		var m = null;
 
-		var Component = CollisionComponent.extend({
+		var PolygonCollider = CollisionComponent.extend({
+			/**
+			 * <p style='color:#AD071D'><strong>configure</strong></p>
+			 *
+			 * Configures properties
+			 * set via the <a href=@@component-pool@@>component-pool</a>
+			 * 
+			 * This method is important as it applies all the configuration needed for 
+			 * the component to work as expected.
+			 *
+			 * Overriden in this module to handle different types for the **points** argument
+			 * 
+			 * @param  {Object} args An object with all the properties to write into the component
+			 */
+			configure: function(args) {
+				this._super(args);
+
+				var copy = JSON.parse(JSON.stringify(this.points));
+				var points = [];
+
+				for (var i = 0; i < this.points.length; i++) {
+					points.push(new Vector2D(copy[i].x, copy[i].y));
+				}
+
+				this.points = points;
+			},
+			/**
+			 * --------------------------------
+			 */
+			
 			/**
 			 * <p style='color:#AD071D'><strong>start</strong></p>
 			 *
@@ -73,9 +101,17 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 				this._super();
 
 				this.pointCount = this.points.length;
-				this.pointsCopy = JSON.parse(JSON.stringify(this.points));
+				this.pointsCopy = [];
 
-				this.collider = new SAT.FixedSizePolygon(new Vector2D(0, 0), this.points);
+				var copy = JSON.parse(JSON.stringify(this.points));
+				var points = [];
+
+				for (var i = 0; i < this.pointCount; i++) {
+					this.pointsCopy.push(new Vector2D(copy[i].x, copy[i].y));
+					points.push(new Vector2D(copy[i].x, copy[i].y));
+				} 
+
+				this.collider = new SAT.FixedSizePolygon(new Vector2D(0, 0), points);
 				this.colliderType = CollisionResolver.polygonCollider;
 			},
 			/**
@@ -90,7 +126,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 			 * The collider follows it's parent along every matrix transformation.
 			 */
 			update: function() {
-				m = this.parent.getMatrix(m);
+				m = this.parent.matrix;
 
 				for(var i=0; i<this.pointCount; i++) {
 					p = m.transformPoint(this.pointsCopy[i].x, this.pointsCopy[i].y, p);
@@ -118,15 +154,18 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 			 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 			 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
 			 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
+			 * @param  {Object} gb     A reference to the [gb](@@gb@@) module
 			 */
-			debug_draw: function(context, viewport, draw) {
-				var m = this.parent.matrix;
+			debug_draw: function(context, viewport, draw, gb) {
+				if (!gb.colliderDebug) return;
+
+				m = this.parent.matrix;
 
 				context.save();
 
 				context.setTransform(1, 0, 0, 1, 0, 0);			
 				context.transform(m.a, m.b, m.c, m.d, m.tx, m.ty);
-				Draw.polygon(context, 0, 0, this.pointsCopy, null, this.debugColor, 2);
+				draw.polygon(context, 0, 0, this.pointsCopy, null, this.debugColor, 2);
 				
 				context.restore();
 
@@ -135,8 +174,8 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 			/**
 			 * --------------------------------
 			 */
-		});
+		});	
 
-		return Component;
+		return PolygonCollider;
 	}
 );

@@ -29,6 +29,9 @@ define(function(require){
 
 	var DebugDraw = {}
 
+	var draw = require('draw');
+	var gb;
+
 	/**
 	 * <p style='color:#AD071D'><strong>debugDraw</strong></p>
 	 *
@@ -41,34 +44,32 @@ define(function(require){
 	 * @param  {Object} viewport The [viewport](@@viewport@@) the [game-object](@@game-object@@) is drawn too
 	 */
 	DebugDraw.gameObject = function(context, viewport) {
-		var gb = require('gb');
+		if (!gb) {
+			gb = require('gb');
+		}
 		
-		if(gb.debug) {
-
+		if(gb.debug && !this.skipDebug) {
 			// Store current context
 			context.save();
 			// Reset transformation
 			context.setTransform(1, 0, 0, 1, 0, 0);			
-			// Translate to adjust for the current [viewport](@@viewport@@)
-			context.translate(viewport.x + viewport.offsetX, viewport.y + viewport.offsetY);
-			// Scale to adjust for the current [viewport](@@viewport@@)
-	    	context.scale(viewport.scaleX, viewport.scaleY);
-	    	// Translate to the center of the [game-object](@@game-object@@)
-			
-			// Draw what ever the [game-object](@@game-object@@) wants to show in debug mode
-	    	this.debug_draw(context, viewport, require('draw'))
+			// Apply transformations for the current [viewport](@@viewport@@)
+			viewport.transformContext(context);
 
-	    	// Draw what ever the [renderer](@@renderer@@) wants to show in debug mode
-	    	if (this.renderer) {
-	    		this.renderer.debug_draw(context, viewport, require('draw'));
-	    	}
+    	// Draw what ever the [renderer](@@renderer@@) wants to show in debug mode
+    	if (this.renderer) {
+    		this.renderer.debug_draw(context, viewport, draw, gb);
+    	}
 
 			if (this.components) {
 				// Draw whatever the [components](@@component@@) want to draw in debug mode
 				for(var i=0; i<this.components.length; i++) {
-					this.components[i].debug_draw(context, viewport, require('draw'))
+					this.components[i].debug_draw(context, viewport, draw, gb);
 				}
 			}
+			
+			// Draw what ever the [game-object](@@game-object@@) wants to show in debug mode
+	    this.debug_draw(context, viewport, draw, gb);
 
 			// Restore original context
 			context.restore();

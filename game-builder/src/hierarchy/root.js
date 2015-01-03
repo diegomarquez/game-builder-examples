@@ -36,7 +36,7 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 
 		init: function() {
 			this._super();
-			this.allViewports = Viewports.all();
+			this.allViewports = Viewports.allAsArray();
 
 			this.canvas = document.getElementById('game');
 		},
@@ -55,45 +55,64 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 			// Clear the canvas
 			context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-			for (var k in this.allViewports) {
-				var v = this.allViewports[k];
+			for (var i = 0; i < this.allViewports.length; i++) {
+				var v = this.allViewports[i];
 
 				// Skip everything if the viewport is not visible
-				if (!v.isVisible()) return;
+				if (!v.isVisible()) continue;
 
 				// Save state for current viewport
 				context.save();
-				
-				// This simulates a strokes that grows outwards
-	        	if (v.strokeWidth || v.strokeColor) {
-					context.save();
-					context.fillStyle = v.strokeColor;
 
-		        	context.fillRect(v.offsetX-v.strokeWidth, v.offsetY-v.strokeWidth, v.width+(v.strokeWidth*2), v.strokeWidth);
-		        	context.fillRect(v.offsetX-v.strokeWidth, v.offsetY+v.height, v.width+(v.strokeWidth*2), v.strokeWidth);
-		        	context.fillRect(v.offsetX-v.strokeWidth, v.offsetY-v.strokeWidth, v.strokeWidth, v.height+(v.strokeWidth*2));
-		        	context.fillRect(v.offsetX+v.width, v.offsetY-v.strokeWidth, v.strokeWidth, v.height+(v.strokeWidth*2));
+        if (v.Clipping) {
+        	// Set the clipping area
+					context.beginPath();
+
+					if (v.strokeWidth) {
+						context.rect(v.OffsetX-v.strokeWidth, v.OffsetY-v.strokeWidth, v.Width+v.strokeWidth*2, v.Height+v.strokeWidth*2);
+					} else {
+						context.rect(v.OffsetX, v.OffsetY, v.Width, v.Height);	
+					}
+
+		      context.clip();
+					context.closePath();
+        }
+       
+				// Make all the drawings relative to the viewport's visible area
+				v.transformContext(context);
+				// Draw all the game objects associated with this viewport
+	    	v.draw(context);
+	    	// Go back to previous state for the next viewport
+	    
+	    	// This simulates a strokes that grows outwards
+        if (v.strokeWidth || v.strokeColor) {
+					context.save();
+					context.setTransform(1, 0, 0, 1, 0, 0);
+
+					context.fillStyle = v.strokeColor;
+	        context.fillRect(v.OffsetX-v.strokeWidth, v.OffsetY-v.strokeWidth, v.Width+(v.strokeWidth*2), v.strokeWidth);
+	        context.fillRect(v.OffsetX-v.strokeWidth, v.OffsetY+v.Height, v.Width+(v.strokeWidth*2), v.strokeWidth);
+	        context.fillRect(v.OffsetX-v.strokeWidth, v.OffsetY-v.strokeWidth, v.strokeWidth, v.Height+(v.strokeWidth*2));
+	        context.fillRect(v.OffsetX+v.Width, v.OffsetY-v.strokeWidth, v.strokeWidth, v.Height+(v.strokeWidth*2));
 
 					context.restore();	        	
-	        	}
+        }
 
-				// Set the clipping area
-				context.beginPath();
-	        	context.rect(v.offsetX, v.offsetY, v.width, v.height);
-	        	context.clip();
-				context.closePath();
-	        	
-				// make all the drawings relative to the viewport's visible area
-	    		context.translate(v.x + v.offsetX, v.y + v.offsetY);
-	    		context.scale(v.scaleX, v.scaleY);
-				
-				// Draw all the game objects associated with this viewport
-	    		v.draw(context);
-
-	    		// Go back to previous state for the next viewport
-	    		context.restore();
+	    	context.restore();
 			}
-		}
+		},
+
+		/**
+		 * <p style='color:#AD071D'><strong>typeName</strong></p>
+		 *
+		 * @return {String} Returns the type name of this object
+		 */
+		typeName: function() {
+			return 'Root';
+		},
+		/**
+		 * --------------------------------
+		 */
 	});
 
 	return new Root();

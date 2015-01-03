@@ -74,28 +74,58 @@ define(function(require) {
 		 * @return {Object}       A configuration object. Nothing too fancy
 		 */
 		createConfiguration: function(alias, type) {
+			var self = this;
 
 			// Configurations objects for [components](@@component@@)
 			// contain the arguments that this configuration will apply
 			var configuration = {
 				componentId: type,
 				componentArgs: null,
+				alias: alias,
 
 				// Returns the id of the pool this configuration refers to
 				typeId: function() {
 					return type;
 				},
 
+				configurationId: function() {
+					return alias;
+				},
+
 				// Set which arguments this configuration will apply to a
 				// [component](@@component@@)
 				args: function(args) {
 					this.componentArgs = args;
+					self.execute(self.UPDATE_CONFIGURATION, this);
 					return this;
 				}
 			}
 
 			this.configurations[alias] = configuration;
+			this.execute(this.CREATE_CONFIGURATION, configuration);
 		
+			return configuration;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>createConfigurationFromObject</strong></p>
+		 *
+		 * @param  {Object} configurationObject An object with all the information needed to set up a configuration for a pooled type
+		 *
+		 * @return {Object} The configuration object created
+		 */
+		createConfigurationFromObject: function(configurationObject) {
+			var configuration = this.createConfiguration(configurationObject.alias, configurationObject.componentId);
+
+			for (var k in configurationObject) {
+				configuration[k] = configurationObject[k];
+			}
+
+			this.execute(this.CREATE_CONFIGURATION, configuration);
+
 			return configuration;
 		},
 		/**
@@ -124,6 +154,7 @@ define(function(require) {
 		 * Gets a configuration for the requested [component](@@component@@).
 		 *
 		 * @param  {String} alias      Id of the [component](@@component@@) requested
+		 * @param  {Boolean} nestedCall
 		 *
 		 * @throws {Error} If the corresponding pool has no available objects
 		 * @return {Object} The configuration object requested
@@ -141,6 +172,30 @@ define(function(require) {
 			}
 
 			return configuration;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>getConfigurationObject</strong></p>
+		 *
+		 * Gets the requested configuration. It doesn't perform any type of validations.
+		 * 
+		 * @param  {String} alias      Id of the [component](@@component@@) requested
+		 *
+		 * @throws {Error} If the id provided does not match with any existing one
+		 * 
+		 * @return {Object} The configuration object requested
+		 */
+		getConfigurationObject: function(alias) {
+			var configuration = this.configurations[alias]
+
+			if(!configuration) {
+				ErrorPrinter.printError('Component Pool', 'Configuration with id: '  + alias + ' does not exist');
+			}
+
+			return this.configurations[alias];
 		}
 		/**
 		 * --------------------------------

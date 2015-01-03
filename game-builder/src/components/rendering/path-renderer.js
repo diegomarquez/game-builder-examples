@@ -87,10 +87,16 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 			if (this.skipCache) return;
 
 			if (!this.width && !this.height) {
-				ErrorPrinter.missingArgumentError('Path Renderer', 'width', 'height')
+				ErrorPrinter.missingArgumentError('Path Renderer', 'width', 'height');
 			}
 
-			PathCache.cache(this.name, this.width, this.height, this.drawPath);
+			if (!this.name) {
+				ErrorPrinter.missingArgumentError('Path Renderer', 'name');
+			}
+
+			PathCache.cache(this.name, this.width, this.height, function(context) {
+				this.drawPath(context);	
+			}.bind(this));
 		},
 		/**
 		 * --------------------------------
@@ -102,10 +108,11 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 		 * This method must define the path that will be cached.
 		 *
 		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
-		 *
+		 * @param  {Object} viewport     The [viewport](@@viewport@@) this renderer is being drawn to
+		 * 
 		 * @throws {Error} If it is not overriden by child classes
 		 */
-		drawPath: function(context) {
+		drawPath: function(context, viewport) {
 			ErrorPrinter.mustOverrideError('Path Renderer');
 		},
 		/**
@@ -119,10 +126,11 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 		 * like **scaleX**, **scaleY** and **offsets**
 		 * 
 		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+		 * @param  {Object} viewport     The [viewport](@@viewport@@) this renderer is being drawn to
 		 */
-		draw: function(context) {
+		draw: function(context, viewport) {
 			if (this.skipCache) {
-				this.drawPath(context);
+				this.drawPath(context, viewport);
 			} else {
 				canvas = PathCache.get(this.name);
 				context.drawImage(canvas, this.rendererOffsetX(), this.rendererOffsetY(), this.rendererWidth(), this.rendererHeight());	
