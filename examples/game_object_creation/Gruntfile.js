@@ -66,6 +66,10 @@ module.exports = function(grunt) {
       // Clean the folder of the production build
       'build-prod': {
         src: 'build/prod'
+      },
+
+      css: {
+        src: [generatedCssDir, stylesCssDir + allStylesFilename],
       }
     },
 
@@ -112,6 +116,7 @@ module.exports = function(grunt) {
           }
         }]
       },
+
       plain_sans_main: {
         files: [{
           expand: true,
@@ -123,6 +128,7 @@ module.exports = function(grunt) {
           }
         }]
       },
+
       append_main: {
         files: [{
           expand: true,
@@ -250,7 +256,7 @@ module.exports = function(grunt) {
   // This task downloads game-builder source code
   grunt.registerTask('framework', ['clean:framework', 'shell:framework']);  
   // This task builds the css stylesheet
-  grunt.registerTask('css', ['less', 'concat:generated_sans_main', 'concat:plain_sans_main', 'concat:append_main']);
+  grunt.registerTask('css', ['clean:css', 'less', 'concat:generated_sans_main', 'concat:plain_sans_main', 'concat:append_main']);
   // This task opens index.html
   grunt.registerTask('run', ['open:index']);
   // Refreshes all the data before opening index.html
