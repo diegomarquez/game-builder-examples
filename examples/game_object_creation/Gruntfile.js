@@ -7,7 +7,7 @@ module.exports = function(grunt) {
   var allStylesFilename = 'all_styles.css';
   
   var stylesDir = 'styles/';
-  var assetsDir = 'assets/'
+  var assetsDir = 'assets/';
   var buildProdDir = 'build/prod/';
   var buildDevDir = 'build/dev/';
   var stylesCssDir = 'styles/css/';
