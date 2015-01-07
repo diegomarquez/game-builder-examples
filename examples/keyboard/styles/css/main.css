@@ -19,28 +19,13 @@ div {
 }
 
 #labels {
-	color: #fff;
 	position: relative;
 }
 
 .label {
-	position: absolute;
-	text-align: center;
-	width: 100%;
-}
-
-#label_1 {
-	top: -210px;
+	color: #fff;
+	position: relative;
+	top: -300px;
 	left: 0px;
-}
-
-#label_2 {
-	top: -190px;
-	left: 0px;
-}
-
-#label_3 {
-	color: #0f0;
-	top: -120px;
-	left: 0px;
+	padding: 3px;
 }
