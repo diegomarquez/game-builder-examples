@@ -7,7 +7,6 @@ html, body, div, canvas {
 
 div {
   font-family: 'Press Start 2P';
-  font-size: 7;
 }
 
 #game {
@@ -15,5 +14,20 @@ div {
 }
 
 #main {
-	position: relative;
+	position: fixed;
+}
+
+#labels {
+	color: #fff;
+ 	position: relative;
+}
+
+.label {
+	position: absolute;
+	text-align: center;
+	width: 400px;
+}
+
+#label_1 {
+	top: -150px;
 }
