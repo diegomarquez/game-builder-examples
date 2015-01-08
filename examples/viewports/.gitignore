@@ -1,3 +1,6 @@
 node_modules
-./lib
-./game-builder
+generated
+styles/css/all_styles.css
+build
+build/dev
+build/prod
