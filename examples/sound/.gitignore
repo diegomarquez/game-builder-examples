@@ -1,1 +1,6 @@
 node_modules
+generated
+styles/css/all_styles.css
+build
+build/dev
+build/prod

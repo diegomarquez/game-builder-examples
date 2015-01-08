@@ -1,5 +1,5 @@
 {
-  "name": "game-object-creation",
+  "name": "renderers",
   "version": "0.1.0",
   "additionalSrcPaths": "../common_src",
   "additionalAssetPaths": "../common_assets",
