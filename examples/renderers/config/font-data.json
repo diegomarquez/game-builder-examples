@@ -1,4 +1,4 @@
-var webfonts = {
+{
 	// Refer [Web font loader](https://github.com/typekit/webfontloader) for details on how it shoulf look like.
 	data: {
 		google: {
