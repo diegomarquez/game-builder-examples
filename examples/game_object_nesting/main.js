@@ -6,6 +6,7 @@
  * [gb](@@gb@@),
  * [game](@@game@@),
  * [basic-display-setup](@@basic-display-setup@@),
+ * [prevent-keys-default](@@prevent-keys-default@@),
  * [nesting-bundle](@@nesting-bundle@@)
  */
 
@@ -19,6 +20,7 @@ define(function(require){
 
 	game.add_extension(require('basic-display-setup'));
 	game.add_extension(require("activity-display"));
+	game.add_extension(require("prevent-keys-default"));
 
 	// This is the main initialization function
 	game.on(game.CREATE, this, function() {

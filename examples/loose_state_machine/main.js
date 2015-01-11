@@ -5,6 +5,8 @@
  * Depends of:
  * [gb](@@gb@@),
  * [game](@@game@@),
+ * [activity-display](@@activity-display@@),
+ * [prevent-keys-default](@@prevent-keys-default@@),
  * [state-machine](@@state-machine@@),
  * [keyboard](@@keyboard@@)
  */
@@ -17,14 +19,16 @@ define(function(require){
 	
 	var game = gb.game;
 
-	game.add_extension(require("activity-display"));
-
-	// The first thing to do is get a hold to a reference to the state-machine_factory.
+	// The first thing to do is get a hold to a reference to the state machine factory.
 	// This thing will let you instantiate different kinds of state machines and their states.
 	var stateMachineFactory = require('state-machine');
-	var keyboard = require('keyboard');
 
+	var keyboard = require('keyboard');
+	
 	var currentState = document.getElementById('label_4');
+	
+	game.add_extension(require("activity-display"));
+	game.add_extension(require("prevent-keys-default"));
 	
 	// This is the main initialization function
 	game.on(game.CREATE, this, function() {

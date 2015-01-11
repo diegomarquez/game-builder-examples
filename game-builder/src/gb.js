@@ -118,6 +118,20 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
       },
 
       /**
+       * <p style='color:#AD071D'><strong>removeViewportShortCut</strong></p>
+       *
+       * Removes the [viewport](@@viewport@@) + [layer](@@layer@@) setups for the given id
+       * 
+       * @param  {Strin} alias Id of the shortcut to remove
+       */
+      removeViewportShortCut: function(alias) {
+      	delete this.viewportsAliases[alias];
+      },
+      /**
+       * --------------------------------
+       */
+
+      /**
        * <p style='color:#AD071D'><strong>getViewportShortCuts</strong></p>
        *
        * Get all the viewport shortcut names

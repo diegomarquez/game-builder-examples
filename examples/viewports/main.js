@@ -7,6 +7,8 @@
  * [game](@@game@@),
  * [world](@@world@@),
  * [complex-display-setup](@@complex-display-setup@@),
+ * [activity-display](@@activity-display@@),
+ * [prevent-keys-default](@@prevent-keys-default@@),
  * [input-bundle](@@input-bundle@@),
  */
 
@@ -23,6 +25,7 @@ define(function(require){
 
 	game.add_extension(require('complex-display-setup'));
 	game.add_extension(require("activity-display"));
+	game.add_extension(require("prevent-keys-default"));
 
 	// This is the main initialization function
 	game.on(game.CREATE, this, function() {

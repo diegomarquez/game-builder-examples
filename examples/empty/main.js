@@ -4,7 +4,10 @@
  *
  * Depends of:
  * [game](@@game@@),
- * [gb](@@gb@@)
+ * [gb](@@gb@@),
+ * [activity-display](@@activity-display@@),
+ * [prevent-keys-default](@@prevent-keys-default@@)
+ * 
  */
 
 /**
@@ -17,6 +20,7 @@ define(function(require){
 	var game = gb.game;
 
 	game.add_extension(require("activity-display"));
+	game.add_extension(require("prevent-keys-default"));
 
 	// This is the main initialization function
 	game.on(game.CREATE, this, function() {	
