@@ -8,9 +8,11 @@
  * [game-object-pool](@@game-object-pool@@),
  * [component-pool](@@component-pool@@),
  * [assembler](@@assembler@@),
- * [groups](@@groups@@)
- * [viewports](@@viewports@@)
+ * [groups](@@groups@@),
+ * [viewports](@@viewports@@),
  * [basic-display-setup](@@basic-display-setup@@),
+ * [activity-display](@@activity-display@@),
+ * [prevent-keys-default](@@prevent-keys-default@@),
  * [basic-game-object](@@basic-game-object@@),
  * [box-renderer](@@box-renderer@@)
  */
@@ -30,13 +32,15 @@ define(function(require){
 	var viewports = gb.viewports;
 	var canvas = gb.canvas;
 
-	// This piece of code takes care of creating a basic display structure.
+	// This extension takes care of setting up the basic display structure,
 	// it adds 3 [groups](@@group@@) to work with, 'First', 'Second' and 'Third'
-	// This groups control the updating order
 	// The [viewports](@@viewport@@) are set up here aswell, in this case there is a single one called 'Main'
 	game.add_extension(require('basic-display-setup'));
+	// Display some information on the activity of Game-Builder's inner workings
 	game.add_extension(require("activity-display"));
-	
+	// Prevents default key behaviour for all the keys defined by Game Builder
+	game.add_extension(require("prevent-keys-default"));
+
 	// Getting the prototype for [basic-game-object](@@basic-game-object@@)
 	var basic_game_object = require('basic-game-object'); 
 	// Getting the prototype for [box-renderer](@@box-renderer@@) component
