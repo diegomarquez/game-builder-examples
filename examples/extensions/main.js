@@ -29,7 +29,6 @@ define(function(require){
 	game.add_extension(require("resume"));
 	game.add_extension(require("activity-display"));
 	game.add_extension(require("prevent-keys-default"));
-
 	
 	// This is the main initialization function
 	game.on(game.CREATE, this, function() {

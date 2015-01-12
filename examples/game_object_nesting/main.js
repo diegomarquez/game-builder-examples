@@ -6,6 +6,7 @@
  * [gb](@@gb@@),
  * [game](@@game@@),
  * [basic-display-setup](@@basic-display-setup@@),
+ * [activity-display](@@activity-display@@),
  * [prevent-keys-default](@@prevent-keys-default@@),
  * [nesting-bundle](@@nesting-bundle@@)
  */
