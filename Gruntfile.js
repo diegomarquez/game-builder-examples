@@ -41,16 +41,11 @@ module.exports = function(grunt) {
     hub: {
       buildAll: {
         src: files,
-        tasks: ['build']
-      },
-
-      generateAll: {
-        src: files,
-        tasks: ['config', 'asset-map']
+        tasks: ['setup']
       },
 
       options: {
-        concurrent: files.length
+        concurrent: 1
       }
     },
 
@@ -117,7 +112,6 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', ['npmAll', 'hub:buildAll']);
-  grunt.registerTask('generate', ['hub:generateAll']);
 
   grunt.registerTask('push', ['shell:pullGameBuilder', 'shell:pushExamples', 'shell:pushGameBuilder']);
 };
