@@ -253,7 +253,8 @@ module.exports = function(grunt) {
       'target': {
         files: [
           { src: [generatedDir + 'asset-map.json'], dest: 'src/' },
-          { src: [configDir + 'font-data.json'], dest: 'src/' }
+          { src: [configDir + 'font-data.json'], dest: 'src/' },
+          { src: [configDir + 'preload-assets.json'], dest: 'src/' }
         ]
       }
     },
