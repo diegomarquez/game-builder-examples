@@ -2,7 +2,7 @@
   "name": "game-object-creation",
   "version": "0.1.0",
   "additionalSrcPaths": "../common_src",
-  "additionalAssetPaths": "../common_assets,../../game-builder/assets",
+  "additionalAssetPaths": "../common_assets",
   "frameworkRepo": "git@github.com:diegomarquez/game-builder.git",
   "framework": "../../game-builder",
   "lib": "../../lib",

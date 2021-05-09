@@ -19,6 +19,9 @@ module.exports = function(grunt) {
   var assetPaths = p.additionalAssetPaths.split(',');
   assetPaths.push(assetsDir);
 
+  p.framework = p.framework.split(/[/|\\]/).join(path.sep);
+  assetPaths.push(p.framework + "/assets");
+
   assetPaths = assetPaths.filter(function(path) {
   	return path.trim() != "";
   });
